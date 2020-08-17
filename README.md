@@ -17,7 +17,6 @@ Usage: awstfy <command> <subcommand>
 
   Top level commands:  
   configure             Configures project.
-  profile               Manages AWS Profiles.
   provider              Configures default Terraform provider for this project.
   backend               Configures Terraform backend for this projet.
   clone                 Clones GIT repository in current directory.
@@ -25,6 +24,10 @@ Usage: awstfy <command> <subcommand>
   pipeline              Creates default CI pipeline for GitHub or GitLab platform.
   version               Shows current version.
   help                  Displays help.
+                       
+  profile <command>: Manages AWS profiles
+  profile configure     Creates or updates AWS profile.
+  profile list          Lists AWS profiles.
                        
   env <command>: Manages Terraform workspaces (environments)
   env select            Seclect a Terraform workspace.
