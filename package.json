@@ -1,0 +1,36 @@
+{
+  "name": "@recarnot/awstfy-cli",
+  "version": "0.6.0",
+  "description": "Command line tool for AWS Terraform project management",
+  "main": "awstfy--cli.js",
+  "preferGlobal": true,
+  "bin": {
+    "awstfy-cli": "awstfy-cli.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Romain Ecarnot",
+  "keywords": [
+    "cli",
+    "terraform",
+    "aws"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "clear": "^0.1.0",
+    "cli-table3": "^0.6.0",
+    "colors": "^1.4.0",
+    "commander": "^6.0.0",
+    "configstore": "^5.0.1",
+    "figlet": "^1.5.0",
+    "ini": "^1.3.5",
+    "inquirer": "^7.3.3",
+    "log-symbols": "^4.0.0",
+    "open": "^7.1.0",
+    "shelljs": "^0.8.4",
+    "template-file": "^3.1.0",
+    "update-notifier": "^4.1.1"
+  },
+  "devDependencies": {}
+}

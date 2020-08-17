@@ -1,0 +1,77 @@
+image:
+  name: hashicorp/terraform:light
+
+variables:
+  #Constants
+  TF_IN_AUTOMATION: "true"
+  TF_PLAN: plan.cache
+  TF_PLAN_JSON: plan.json
+  TF_PLAN_DRIFT: drift.json
+  TF_STATE_LIST: state.txt
+  
+  #Customs
+  CONTEXT: {{context}}
+  STAGING: {{stage}}
+
+cache:
+  key: "$CI_COMMIT_SHA"
+  paths:
+    - .terraform
+
+.conversion_alias: &conversion_alias
+  - alias convert_report="jq -r '([.resource_changes[].change.actions?]|flatten)|{\"create\":(map(select(.==\"create\"))|length),\"update\":(map(select(.==\"update\"))|length),\"delete\":(map(select(.==\"delete\"))|length)}'"
+
+.job_definition: &job_definition
+  only:
+    - master
+  except:
+    changes:
+    - "*.md"
+    - doc/**/*
+
+stages:
+  - plan
+  - deploy
+  - destroy
+
+terraform:plan:
+  <<: *job_definition
+  before_script:
+    - *conversion_alias
+  stage: plan
+  script:
+    - terraform --version
+    - terraform init"
+    - terraform plan -out=$TF_PLAN
+    - terraform show -json $TF_PLAN > $TF_PLAN_JSON
+    - terraform show -json $TF_PLAN | convert_report > $TF_PLAN_DRIFT
+    - cat $TF_PLAN_DRIFT
+  artifacts:
+    paths:
+      - $TF_PLAN_JSON
+      - $TF_PLAN_DRIFT
+
+terraform:deploy:
+  <<: *job_definition
+  stage: deploy
+  script:
+    - terraform apply -auto-approve
+    - terraform state list > $TF_STATE_LIST
+  artifacts:
+    paths:
+      - $TF_STATE_LIST
+  needs:
+    - terraform:plan
+  environment:
+    name: $STAGING
+    on_stop: terraform:destroy
+
+terraform:destroy:
+  <<: *job_definition
+  stage: destroy
+  script:
+    - terraform destroy -auto-approve
+  when: manual
+  environment:
+    name: $STAGING
+    action: stop
