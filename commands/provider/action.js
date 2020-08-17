@@ -2,7 +2,7 @@ const { prompt } = require('inquirer');
 const { loadConfig, saveConfig } = require('../../tools/config');
 const { configureLocalProvider, configureTFCProvider } = require('./handler');
 const { TFRegionList } = require('../../constants.js');
-const { getAWSProfiles } = require('../../tools/context');
+const { profileManager } = require('../../managers/profiles_manager');
 
 var provider_inputs = {
     type: 'list',
@@ -25,9 +25,9 @@ var provider_local_inputs = [
     {
         type: 'list',
         name: 'aws_profile',
-        message: 'Choose the AWS Profile:',
+        message: 'Choose the AWS profile:',
         default: loadConfig('aws_profile', 'open'),
-        choices: getAWSProfiles()
+        choices: profileManager.list()
     },
     {
         type: 'list',
@@ -44,8 +44,8 @@ var provider_tfc_inputs = [
         name: 'access_key_var',
         message: 'Enter the name of the variable to retreive AWS Access key id:',
         default: loadConfig('access_key_var', 'aws_access_key'),
-        validate: function(result) {
-            if(result.length < 1) {
+        validate: function (result) {
+            if (result.length < 1) {
                 return 'Must be set.'
             }
             return true
@@ -56,8 +56,8 @@ var provider_tfc_inputs = [
         name: 'secret_key_var',
         message: 'Enter the name of the variable to retreive AWS Secret key:',
         default: loadConfig('secret_key_var', 'aws_secret_key'),
-        validate: function(result) {
-            if(result.length < 1) {
+        validate: function (result) {
+            if (result.length < 1) {
                 return 'Must be set.'
             }
             return true
@@ -68,8 +68,8 @@ var provider_tfc_inputs = [
         name: 'region_var',
         message: 'Enter the name of the variable to retreive AWS Region:',
         default: loadConfig('region_var', 'aws_region'),
-        validate: function(result) {
-            if(result.length < 5) {
+        validate: function (result) {
+            if (result.length < 5) {
                 return 'Must be set.'
             }
             return true
@@ -81,7 +81,7 @@ function action() {
     prompt(provider_inputs).then(answers => {
         saveConfig('provider_type', answers.provider_type);
 
-        if(answers.provider_type == 'local') {
+        if (answers.provider_type == 'local') {
             prompt(provider_local_inputs).then(answers => {
                 configureLocalProvider(answers)
             })

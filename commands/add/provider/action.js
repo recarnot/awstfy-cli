@@ -2,6 +2,7 @@ const { prompt } = require('inquirer');
 const { hasContext, getAWSProfiles } = require('../../../tools/context');
 const { configureLocalProvider, configureTFCProvider } = require('./handler');
 const { TFRegionList } = require('../../../constants');
+const { profileManager } = require("../../../managers/profiles_manager");
 
 var provider_inputs = {
     type: 'list',
@@ -32,10 +33,10 @@ var provider_local_inputs = [
         }
     },
     {
-        type: 'list',
+        type: 'raw_list',
         name: 'profile',
         message: 'AWS Profile:',
-        choices: getAWSProfiles()
+        choices: profileManager.list()
     },
     {
         type: 'list',

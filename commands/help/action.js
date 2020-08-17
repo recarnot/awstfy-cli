@@ -38,6 +38,7 @@ exports.callAllHelp = function() {
         console.info('');
         
         addBasicCommands();
+        addProfileCommands();
         addEnvCommands();
         addVarCommands();
         addCloudCommands();
@@ -51,6 +52,13 @@ exports.callAddHelp = function() {
     console.info('');
     console.info('Usage: %s add <resource>', getInfo().name);
     addAddCommands();
+    showHelp();
+}
+
+exports.callProfileHelp = function() {
+    console.info('');
+    console.info('Usage: %s profile <command>', getInfo().name);
+    addProfileCommands();
     showHelp();
 }
 
@@ -81,10 +89,6 @@ function addBasicCommands() {
         {
             name: 'configure',
             description: "Configures project.",
-        },
-        {
-            name: 'profile',
-            description: "Manages AWS Profiles. ",
         },
         {
             name: 'provider',
@@ -209,6 +213,23 @@ function addCloudCommands() {
         {
             name: 'cloud init',
             description: 'Configures Terrafom Cloud access and pulls organizations.',
+        },
+    ];
+
+    pushCommands(commands);
+}
+
+function addProfileCommands() {
+    var commands = [
+        { name: ''},
+        { name: 'profile <command>: Manages AWS profiles'.blue, header: true},
+        {
+            name: 'profile configure',
+            description: 'Creates or updates AWS profile.',
+        },
+        {
+            name: 'profile list',
+            description: 'Lists AWS profiles.',
         },
     ];
 

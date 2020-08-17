@@ -13,22 +13,3 @@ exports.hasContext = function() {
     }
     return true;
 }
-
-exports.getAWSProfiles = function() {
-    
-    const dotAWSDirPath = path.normalize(path.join(os.homedir(), '.aws'));
-    const credentialsFilePath = path.join(dotAWSDirPath, 'credentials');
-
-    let credentials = {};
-    if (fs.existsSync(credentialsFilePath)) {
-        credentials = ini.parse(fs.readFileSync(credentialsFilePath, 'utf-8'));
-    }
-
-    let names = [];
-    for(profile in credentials) {
-        names.push(profile);
-    }
-    names = names.sort();
-
-    return names;
-}

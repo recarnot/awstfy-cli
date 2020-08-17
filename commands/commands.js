@@ -1,32 +1,33 @@
 const { Command } = require('commander');
 
-const { callProvider } = require('./commands/provider/action');
-const { callBackend } = require('./commands/backend/action');
-const { callCICD } = require('./commands/pipeline/action');
-const { callConfigure } = require('./commands/configure/action');
-const { getInfo } = require('./tools/helper');
-const { callVersion } = require('./commands/version/action');
-const { callCreateProfile } = require('./commands/profile/action');
-const { callVPC } = require('./commands/add/vpc/action');
-const { callStorage } = require('./commands/add/storage/action');
-const { callDNSZone } = require('./commands/add/dnszone/action');
-const { callRState } = require('./commands/add/remotestate/action');
-const { callSNS } = require('./commands/add/sns/action');
-const { callProviderAlias } = require('./commands/add/provider/action');
-const { callClone } = require('./commands/clone/action');
-const { callConsole } = require('./commands/console/action');
-const { callEnvList } = require('./commands/env/list/actions');
-const { callEnvShow } = require('./commands/env/show/actions');
-const { callEnvNew } = require('./commands/env/new/actions');
-const { callEnvSelect } = require('./commands/env/select/actions');
-const { callAllHelp, callAddHelp, callEnvHelp, callVarHelp, callCloudHelp } = require('./commands/help/action');
-const { callAddVariable } = require('./commands/var/add/actions')
-const { callListVariables } = require('./commands/var/list/action')
-const { callUpdateVariable } = require('./commands/var/update/actions')
-const { callDeleteVariable } = require('./commands/var/delete/actions');
-const { callCloudInit } = require('./commands/cloud/init/action');
+const { callAllHelp, callAddHelp, callEnvHelp, callVarHelp, callCloudHelp, callProfileHelp } = require('./help/action');
+const { callProvider } = require('./provider/action');
+const { callBackend } = require('./backend/action');
+const { callCICD } = require('./pipeline/action');
+const { callConfigure } = require('./configure/action');
+const { getInfo } = require('../tools/helper');
+const { callVersion } = require('./version/action');
+const { callVPC } = require('./add/vpc/action');
+const { callStorage } = require('./add/storage/action');
+const { callDNSZone } = require('./add/dnszone/action');
+const { callRState } = require('./add/remotestate/action');
+const { callSNS } = require('./add/sns/action');
+const { callProviderAlias } = require('./add/provider/action');
+const { callClone } = require('./clone/action');
+const { callConsole } = require('./console/action');
+const { callEnvList } = require('./env/list/actions');
+const { callEnvShow } = require('./env/show/actions');
+const { callEnvNew } = require('./env/new/actions');
+const { callEnvSelect } = require('./env/select/actions');
+const { callAddVariable } = require('./var/add/actions')
+const { callListVariables } = require('./var/list/action')
+const { callUpdateVariable } = require('./var/update/actions')
+const { callDeleteVariable } = require('./var/delete/actions');
+const { callCloudInit } = require('./cloud/init/action');
+const { callConfigureProfile } = require('./profile/configure/action');
+const { callListProfile } = require('./profile/list/action');
 
-function initCommands () {
+function initCommands() {
     var program = new Command();
 
     program
@@ -34,11 +35,11 @@ function initCommands () {
         .description(getInfo().name + ' is a ' + getInfo().description)
         .action(callAllHelp)
 
-    const version_command = program 
+    const version_command = program
         .command('version')
         .description('Shows current version.')
         .action(callVersion);
-    
+
     const help_command = program
         .command('help')
         .description('Displays help.')
@@ -65,11 +66,6 @@ function initCommands () {
         .option('-f, --force', 'Allows to overwrite configuration if exist')
         .action(callCICD)
 
-    const profile_command = program
-        .command('profile')
-        .description('Create new AWS profile.')
-        .action(callCreateProfile)
-
     const clone_command = program
         .command('clone')
         .description('Clones repository.')
@@ -90,7 +86,7 @@ function initCommands () {
         .description('Adds or updates VPC resource.')
         .option('-f, --force', 'Allows to auto overwrite configuration if exist.')
         .action(callVPC)
-    
+
     const add_storage_command = new Command()
         .command('storage')
         .description('Adds or updates Storage resource.')
@@ -132,7 +128,7 @@ function initCommands () {
         .addCommand(add_alias_command)
         .addCommand(add_help_command)
 
-    
+
     const env_list_command = new Command()
         .command('list')
         .description('List availables workspaces.')
@@ -147,7 +143,7 @@ function initCommands () {
         .command('new')
         .description('Creates new workspace.')
         .action(callEnvNew)
-    
+
     const env_select_command = new Command()
         .command('select')
         .description('Selects workspace.')
@@ -166,7 +162,7 @@ function initCommands () {
         .addCommand(env_show_command)
         .addCommand(env_create_command)
         .addCommand(env_select_command)
-    
+
     const var_add_command = new Command()
         .command('add')
         .description('Adds new variable.')
@@ -186,7 +182,7 @@ function initCommands () {
         .command('list')
         .description('Lists variables.')
         .action(callListVariables)
-    
+
     const var_help_command = new Command()
         .command('help')
         .description('Displays help for var command.')
@@ -200,12 +196,12 @@ function initCommands () {
         .addCommand(var_update_command)
         .addCommand(var_delete_command)
         .addCommand(var_help_command)
-    
+
     const cloud_init_command = new Command()
         .command('init')
         .description('Lists variables.')
         .action(callCloudInit)
-    
+
     const cloud_help_command = new Command()
         .command('help')
         .description('Displays help for cloud command')
@@ -216,6 +212,29 @@ function initCommands () {
         .description('Configures Terrafom Cloud access.')
         .addCommand(cloud_help_command)
         .addCommand(cloud_init_command)
+
+
+    const profile_configure_command = new Command()
+        .command('configure')
+        .description('Configures AWS Profile.')
+        .action(callConfigureProfile)
+
+    const profile_list_command = new Command()
+        .command('list')
+        .description('Lists AWS profiles.')
+        .action(callListProfile)
+
+    const profile_help_command = new Command()
+        .command('help')
+        .description('Displays help for profile command')
+        .action(callProfileHelp)
+
+    program
+        .command('profile <command>')
+        .description('Configures Terrafom Cloud access.')
+        .addCommand(profile_configure_command)
+        .addCommand(profile_list_command)
+        .addCommand(profile_help_command)
 
     program.parse(process.argv)
 }
