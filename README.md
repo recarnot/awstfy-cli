@@ -13,26 +13,40 @@ npm install @recarnot/awstfy-cli
 ## Usage
 
 ```bash
-Usage: awstfy <command> <flag>
+Usage: awstfy <command> <subcommand>
 
-  version                Shows current version.
-  help                   Shows CLI help.
-  context                Configures project context : name, region and Terraform version to use.
-  provider               Configures default Terraform provider for this project.
-  backend                Configures Terraform backend for this projet.
-  pipeline               Creates default CI pipeline for GitHub or GitLab platform.
-                        
-  add        -vpc        Creates new VPC resource.
-  add        -storage    Creates new Storage resource.
-  add        -sns        Creates new SNS Topic resource.
-  add        -dns_zone   Creates new Route 53 Zone.
-  add        -rstate     Creates new Remote State data.
-                        
-  init                   Terraform init command.
-  plan                   Terraform plan command.
-  apply                  Terraform apply command.
-  destroy                Terraform destroy command.
-  show                   Terraform show command.
-  state                  Terraform state command.
+  Top level commands:  
+  configure             Configures project.
+  profile               Manages AWS Profiles.
+  provider              Configures default Terraform provider for this project.
+  backend               Configures Terraform backend for this projet.
+  clone                 Clones GIT repository in current directory.
+  console               Opens AWS Management Console.
+  pipeline              Creates default CI pipeline for GitHub or GitLab platform.
+  version               Shows current version.
+  help                  Displays help.
+                       
+  env <command>: Manages Terraform workspaces (environments)
+  env select            Seclect a Terraform workspace.
+  env list              Retreives Terraform workspaces.
+  env show              Retreives current Terraform workspace.
+  env new               Creates a new Terraform workspace.
+                       
+  var <command>: Manages environment variables
+  var add               Creates a new variable.
+  var list              Lists variables.
+  var update            Updates variable.
+  var delete            Deletes variable.
+                       
+  cloud <command>: Manages Terraform Cloud
+  cloud init            Configures Terrafom Cloud access and pulls organizations.
+                       
+  add <resource>: Add Terraform resources
+  add vpc               Manages VPC.
+  add storage           Manages Storage.
+  add SNS Topic         Manages SNS Topic.
+  add dns               Manages Hosted zone.
+  add state             Manages Remote state connection.
+  add provider          Manages Provider alias.
 ```
 
