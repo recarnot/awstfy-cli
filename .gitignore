@@ -1,0 +1,7 @@
+*.plan
+.terraform
+terraform_state*
+terraform.tfstate.d
+node_modules
+.awstfy
+notes.txt

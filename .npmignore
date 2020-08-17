@@ -1,0 +1,6 @@
+*.plan
+.terraform
+terraform_state*
+terraform.tfstate.d
+.awstfy
+notes.txt
