@@ -1,4 +1,16 @@
 
+<a name="v0.6.9"></a>
+## [v0.6.9](https://github.com/recarnot/awstfy_cli/compare/v0.6.8...v0.6.9) (2020-08-18)
+
+### Fix
+
+* fix storage command
+
+### New
+
+* new version
+
+
 <a name="v0.6.8"></a>
 ## [v0.6.8](https://github.com/recarnot/awstfy_cli/compare/v0.6.7...v0.6.8) (2020-08-18)
 
