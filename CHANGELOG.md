@@ -1,4 +1,16 @@
 
+<a name="v0.6.7"></a>
+## [v0.6.7](https://github.com/recarnot/awstfy_cli/compare/v0.6.6...v0.6.7) (2020-08-18)
+
+### Fix
+
+* fix terraform version
+
+### New
+
+* new version
+
+
 <a name="v0.6.6"></a>
 ## [v0.6.6](https://github.com/recarnot/awstfy_cli/compare/v0.6.5...v0.6.6) (2020-08-18)
 
