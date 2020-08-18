@@ -18,7 +18,7 @@ function configure(conf) {
         }
     }
 
-    var tmp = {content: conf.context, environment: conf.environment};
+    var tmp = {context: conf.context, environment: conf.environment};
     saveFile(TFResoureTemplate.Context, tmp, 'context.tf', 'Context');
     
     saveFile(TFResoureTemplate.Terraform, { version: '~> ' + conf.tf_version }, 'terraform.tf', 'Terraform version');
