@@ -94,7 +94,6 @@ function update() {
         case 1:
             if(fix) {
                 console.info(result.stdout);
-                logWarning('Returns default workspace');
                 fix = false;
             }
     }
