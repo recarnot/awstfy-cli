@@ -78,11 +78,13 @@ function initCommands() {
         .description('Opens AWS Management Console.')
         .action(callConsole);
 
+    /*
     program
         .command('reset')
         .description('Removes all configurations from this project.')
         .action(callReset);
-
+    */
+   
     program
         .command('init')
         .allowUnknownOption()

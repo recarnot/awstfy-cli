@@ -115,10 +115,6 @@ function addBasicCommands() {
             description: "Shows current version.",
         },
         {
-            name: 'reset',
-            description: "Removes all configurations from this project.",
-        },
-        {
             name: 'help',
             description: "Displays help. ",
         },
