@@ -104,7 +104,7 @@ function update() {
 function initFile(filename, env) {
     filename = process.cwd() + '/' + filename;
     var header = `#This file is managed by ${getInfo().name}. All manual modifications will be lost.`
-    content = header + "\n" + `environement= "${env}"`;
+    content = header + "\n" + `environment= "${env}"`;
 
     fs.writeFileSync(filename, content, (err) => {
         if (err) {

@@ -18,9 +18,9 @@ var init_inputs = [
     },
     {
         type: 'input',
-        name: 'environement',
+        name: 'environment',
         message: 'Choose the default Terraform workspace to use:',
-        default: loadConfig('environement', 'default'),
+        default: loadConfig('environment', 'default'),
     },
     {
         type: 'list',

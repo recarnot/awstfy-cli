@@ -21,10 +21,10 @@ function configure(conf) {
     saveFile(TFResoureTemplate.Context, conf, 'context.tf', 'Context');
     saveFile(TFResoureTemplate.Terraform, { version: '~> ' + conf.tf_version }, 'terraform.tf', 'Terraform version');
 
-    createWorkspace(conf.environement);
+    createWorkspace(conf.environment);
     
     saveConfig('context', conf.context)
-    saveConfig('environement', conf.environement)
+    saveConfig('environment', conf.environment)
     saveConfig('tf_version', conf.tf_version)
 }
 exports.configureContext = configure

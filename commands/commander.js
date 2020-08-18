@@ -196,7 +196,8 @@ function initCommands() {
 
     program
         .command('var <option>')
-        .description('Environement variables management.')
+        .description('Environment variables management.')
+        .description(' variables management.')
         .addCommand(var_add_command)
         .addCommand(var_list_command)
         .addCommand(var_update_command)
