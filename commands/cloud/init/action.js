@@ -2,7 +2,7 @@ const shell = require('shelljs');
 const { prompt } = require('inquirer');
 const { configureCloud } = require('./handler');
 const { loadConfig } = require('../../../tools/config');
-const { logInfo, logError } = require('../../../tools/helper');
+const { logError } = require('../../../tools/helper');
 
 exports.callCloudInit = function () {
     var conf;

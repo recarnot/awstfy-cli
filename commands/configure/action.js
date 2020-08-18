@@ -26,14 +26,18 @@ var init_inputs = [
         type: 'list',
         name: 'tf_version',
         message: 'Choose the Terraform version:',
-        default: loadConfig('tf_version', '0.12'),
+        default: loadConfig('tf_version', 'automatic'),
         choices: [
             {
-                name: 'v0.12',
+                name: 'Automatically use your version',
+                value: 'automatic'
+            },
+            {
+                name: 'Force version 0.12',
                 value: '0.12'
             },
             {
-                name: 'v0.13',
+                name: 'Force version 0.13',
                 value: '0.13'
             }
         ]

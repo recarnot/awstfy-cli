@@ -26,6 +26,7 @@ const { callDeleteVariable } = require('./var/delete/actions');
 const { callCloudInit } = require('./cloud/init/action');
 const { callConfigureProfile } = require('./profile/configure/action');
 const { callListProfile } = require('./profile/list/action');
+const { callReset } = require('./reset/action');
 
 function initCommands() {
     var program = new Command();
@@ -75,6 +76,11 @@ function initCommands() {
         .command('console')
         .description('Opens AWS Management Console.')
         .action(callConsole);
+
+    const reset_command = program
+        .command('reset')
+        .description('Removes all configurations from this project.')
+        .action(callReset);
 
     const add_help_command = new Command()
         .command('help')

@@ -1,10 +1,12 @@
 const fs = require('fs');
 const path = require('path');
 const shell = require('shelljs');
+const ini = require('ini');
 const { renderString } = require('template-file')
 const { getInfo } = require('../tools/helper');
 const { getWorkspaceConfigPath, loadConfig } = require('../tools/config');
 const { TFResoureTemplate } = require('../templates/template');
+const TFVariable = require('../commands/var/variable');
 
 class WorkspaceModel {
     constructor() {
@@ -16,15 +18,16 @@ class WorkspaceModel {
 
     init() {
         try {
-            var content = fs.readFileSync(getWorkspaceConfigPath(), {encoding:'utf8'});
+            var content = fs.readFileSync(getWorkspaceConfigPath(), { encoding: 'utf8' });
             var obj = JSON.parse(content);
 
             this.workspaces = obj.workspaces || [];
             this.variables = obj.variables || {};
-            
+
             this._initialized = true;
+            this.flush();
         }
-        catch(err) {
+        catch (err) {
             console.error(err);
         }
     }
@@ -34,25 +37,17 @@ class WorkspaceModel {
     }
 
     register(name) {
-        if(!this.exist(name)) {
+        if (!this.exist(name)) {
             this.workspaces.push(name);
-            this.save();
+            this.flush();
         }
     }
-    
-    save() {
-        if(!this._initialized) return;
-        
-        var filename = getWorkspaceConfigPath();
-        var content = JSON.stringify(this)
-        fs.writeFileSync(filename, content);
-    }
+
 
     addVariable(variable) {
         this.variables[variable.name] = variable;
 
-        this.save();
-        this.export();
+        this.flush();
     }
 
     getVariable(name) {
@@ -60,11 +55,11 @@ class WorkspaceModel {
     }
 
     getVariableValue(name, workspace) {
-        if(!workspace) workspace = 'default';
+        if (!workspace) workspace = 'default';
 
         return this._workspace[workspace][name];
     }
-    
+
     getVariableNames() {
         var list = [];
         for (const key in this.variables) {
@@ -76,52 +71,49 @@ class WorkspaceModel {
 
     getChoices() {
         var questions = [];
-        
+
         this.workspaces.forEach(element => {
             questions.push({
                 type: 'input',
                 name: `value_${element}`,
                 message: `Enter the value in '${element}' workspace:`,
-                when: function(answers) {
-                    if(answers.overwrite == undefined) return true;
-                    if(!answers.overwrite) return false;
+                when: function (answers) {
+                    if (answers.overwrite == undefined) return true;
+                    if (!answers.overwrite) return false;
                     return true;
                 },
-                validate: function(result) {
-                    if(result.length < 1) {
+                validate: function (result) {
+                    if (result.length < 1) {
                         return 'Must be set.'
                     }
                     return true
                 }
             })
         });
-        
+
         return questions;
     }
 
     updateVariable(variable) {
         var name = variable.name;
-        if(this.variables.hasOwnProperty(name)) {
+        if (this.variables.hasOwnProperty(name)) {
             this.variables[name] = variable;
 
-            this.save();
-            this.export();
+            this.flush();
         }
     }
 
     deleteVariable(name) {
-        if(this.variables.hasOwnProperty(name)) {
+        if (this.variables.hasOwnProperty(name)) {
             delete this.variables[name];
 
-            this.save();
-            this.export();
+            this.flush();
         }
     }
 
     clean(list) {
         var consolidate = this.workspaces.concat([]).filter(item => list.includes(item));
         var cleaner = this.workspaces.concat([]).filter(item => !list.includes(item));
-        var variable;
 
         for (const key in this.variables) {
             cleaner.forEach(element => {
@@ -131,37 +123,68 @@ class WorkspaceModel {
         }
 
         this.workspaces = consolidate;
-        this.save();
+        this.flush();
     }
 
-    export() {
+    flush() {
+        this._fixEnv();
+        this._save();
+        this._export();
+    }
+
+    _fixEnv() {
+        var env = TFVariable.create({
+            name: 'environment',
+            type: 'string',
+            description: 'Current environment.',
+            values: {}
+        });
+
+        this.workspaces.forEach(element => {
+            env.values[element] = element;
+        });
+
+        this.variables[env.name] = env;
+    }
+
+    _save() {
+        if (!this._initialized) return;
+
+        var filename = getWorkspaceConfigPath();
+        var content = JSON.stringify(this)
+        fs.writeFileSync(filename, content);
+    }
+
+    _export() {
         this._exportTFVars();
         this._exportVariables();
     }
 
     _exportTFVars() {
-        var content = '';
-        var newline = "\n";
         var filename = '';
-        
-        for (let index = 0; index < this.workspaces.length; index++) {
-            const element = this.workspaces[index];
-            
-            content = `#Auto generated by ${getInfo().name}: ${getInfo().version}`;
+        var current = {};
+
+        this.workspaces.forEach(element => {
             filename = process.cwd() + `/env_${element}.tfvars`;
+
+            if (!fs.existsSync(filename)) {
+                fs.writeFileSync(filename, "");
+            }
+
+            current = ini.parse(fs.readFileSync(filename, 'utf-8'));
 
             for (const key in this.variables) {
                 const variable = this.variables[key];
 
-                if(variable.type === 'string') {
-                    content += newline + `${variable.name}= \"${variable.values[element]}\"`;
+                if (variable.type === 'string') {
+                    current[variable.name] = `"${variable.values[element]}"`;
                 }
-                else content += newline + `${variable.name}= ${variable.values[element]}`;
+                else current[variable.name] = variable.values[element];
             }
-            
-            fs.writeFileSync(filename, content);
-            content = '';
-        };
+
+            fs.writeFileSync(filename, ini.stringify(current));
+
+        });
     }
 
     _exportVariables() {
@@ -169,14 +192,14 @@ class WorkspaceModel {
         var newline = "\n";
         var filename = process.cwd() + '/env_variables.tf';
         var template_name = loadConfig('tf_version', '0.12') === '0.12' ? TFResoureTemplate.Variable_012 : TFResoureTemplate.Variable_013;
-        var template_file = path.dirname(fs.realpathSync(__filename)) + "/templates/" + template_name
+        var template_file = path.dirname(fs.realpathSync(__filename)) + "/../templates/" + template_name
         var template = shell.cat(template_file);
         var variable;
 
         for (const key in this.variables) {
-            variable = this.variables[key];    
+            variable = this.variables[key];
             content += renderString(template, variable) + newline;
-        }   
+        }
 
         fs.writeFileSync(filename, content);
     }

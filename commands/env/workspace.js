@@ -3,6 +3,7 @@ const fs = require('fs');
 const { logSuccess, logError, getInfo, logWarning, logInfo } = require('../../tools/helper');
 const { workspaceModel } = require('../../managers/workspaces_manager');
 const { saveConfig } = require('../../tools/config');
+const TFVariable = require('../var/variable');
 var fix = true;
 
 exports.getWorkspaces = function() {
@@ -18,7 +19,7 @@ exports.createWorkspace = function(name) {
     
     if(!shell.test('-f', envFilename)) {
         shell.touch(envFilename);
-        initFile(envFilename);
+        initFile(envFilename, name);
     }
 
     if(!isDefault(name)) {
@@ -86,7 +87,7 @@ function update() {
             });
 
             workspaceModel.clean(env_names);
-            workspaceModel.save();
+            workspaceModel.flush();
 
             fix = true;
             return { names: env_names, selected: env_selected };
@@ -101,10 +102,12 @@ function update() {
     return { names: ['default'], selected: env_selected }; 
 }
 
-function initFile(filename) {
+function initFile(filename, env) {
     filename = process.cwd() + '/' + filename;
     var header = `#This file is managed by ${getInfo().name}. All manual modifications will be lost.`
-    fs.writeFileSync(filename, header, (err) => {
+    content = header + "\n" + `environement= "${env}"`;
+
+    fs.writeFileSync(filename, content, (err) => {
         if (err) {
             console.error(err)
             throw err;

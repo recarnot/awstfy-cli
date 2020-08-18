@@ -6,12 +6,6 @@ variable "context" {
   default     = "{{context}}"
 }
 
-variable "environement" {
-  description = "Environement"
-  type        = string
-  default     = "{{environement}}"
-}
-
 locals {
   regex_chars     = "/[^a-zA-Z0-9-]/"
   delimiter       = "-"

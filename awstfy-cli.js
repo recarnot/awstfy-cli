@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const shell = require('shelljs');
-const { init } = require('./commands/commands');
+const { init } = require('./commands/commander');
 const { bootstrap } = require('./bootstrap');
 const updateNotifier = require('update-notifier');
 const pkg = require('./package.json');
