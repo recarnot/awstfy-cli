@@ -12,7 +12,8 @@ function configure(conf) {
 
         if (status.code < 1) {
             tmp = status.stdout.split("\n")[0].split(' ')[1].substr(1);
-            version = tmp.substr(0, tmp.length - 3);
+            tmp = tmp.split('.');
+            version = tmp[0] + '.' + tmp[1];
             conf.tf_version = version;
         }
     }
