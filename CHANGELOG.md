@@ -1,4 +1,36 @@
 
+<a name="v0.6.14"></a>
+## [v0.6.14](https://github.com/recarnot/awstfy_cli/compare/v0.6.13...v0.6.14) (2020-08-18)
+
+### Fix
+
+* fix clone command
+
+### Test
+
+* test asciinema markdown
+
+
+<a name="v0.6.13"></a>
+## [v0.6.13](https://github.com/recarnot/awstfy_cli/compare/v0.6.12...v0.6.13) (2020-08-18)
+
+### Fix
+
+* fix context template
+
+
+<a name="v0.6.12"></a>
+## [v0.6.12](https://github.com/recarnot/awstfy_cli/compare/v0.6.11...v0.6.12) (2020-08-18)
+
+### Fix
+
+* fix help command
+
+### New
+
+* new version
+
+
 <a name="v0.6.11"></a>
 ## [v0.6.11](https://github.com/recarnot/awstfy_cli/compare/v0.6.10...v0.6.11) (2020-08-18)
 
