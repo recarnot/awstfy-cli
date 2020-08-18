@@ -1,4 +1,13 @@
 
+<a name="v0.6.4"></a>
+## [v0.6.4](https://github.com/recarnot/awstfy_cli/compare/v0.6.3...v0.6.4) (2020-08-18)
+
+### Update
+
+* update workspaces management
+* update doc
+
+
 <a name="v0.6.3"></a>
 ## [v0.6.3](https://github.com/recarnot/awstfy_cli/compare/v0.6.2...v0.6.3) (2020-08-17)
 
