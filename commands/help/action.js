@@ -138,14 +138,6 @@ function addBasicCommands() {
             name: 'destroy',
             description: `${colors.bold.green('Terraform')} destroy.`
         },
-        {
-            name: 'show',
-            description: `${colors.bold.green('Terraform')} show.`
-        },
-        {
-            name: 'state',
-            description: `${colors.bold.green('Terraform')} state.`
-        },
     ];
 
     pushCommands(commands);
