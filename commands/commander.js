@@ -27,7 +27,7 @@ const { callCloudInit } = require('./cloud/init/action');
 const { callConfigureProfile } = require('./profile/configure/action');
 const { callListProfile } = require('./profile/list/action');
 const { callReset } = require('./reset/action');
-const { callInit, callPlan, callApply, callDestroy, callShow, CallState } = require('./terraform/action');
+const { callInit, callPlan, callApply, callDestroy } = require('./terraform/action');
 
 function initCommands() {
     var program = new Command();
@@ -105,18 +105,6 @@ function initCommands() {
         .command('destroy')
         .allowUnknownOption()
         .description('Terraform destroy command.')
-        .action(callDestroy)
-
-    program
-        .command('show')
-        .allowUnknownOption()
-        .description('Terraform show command.')
-        .action(callDestroy)
-
-    program
-        .command('state')
-        .allowUnknownOption()
-        .description('Terraform state command.')
         .action(callDestroy)
 
     const add_help_command = new Command()

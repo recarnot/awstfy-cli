@@ -1,7 +1,5 @@
 const shell = require('shelljs');
 const { getSelectedWorkspace } = require("../env/workspace");
-const colors = require('colors/safe');
-const { logInfo } = require('../../tools/helper');
 const stream = process.stderr;
 const logSymbols = require('log-symbols');
 
@@ -34,20 +32,6 @@ exports.callDestroy = function (rawcommand) {
     stream.write(`${logSymbols.info} Destroy with ${command.env.green}\n`);
     //stream.write(`${logSymbols.info} ${command.line}\n`);
     shell.exec(command.line, {async:true});
-}
-
-exports.callShow = function (rawcommand) {
-    var main = 'show';
-    var command = buildTerraformCommand(main, rawcommand);
-    stream.write(`${logSymbols.info} ${command.line}\n`);
-    shell.exec(command.line);
-}
-
-exports.CallState = function (rawcommand) {
-    var main = 'state';
-    var command = buildTerraformCommand(main, rawcommand);
-    stream.write(`${logSymbols.info} ${command.line}\n`);
-    shell.exec(command.line);
 }
 
 function buildTerraformCommand(main, command, env = false, auto = false) {
