@@ -1,6 +1,6 @@
 {
   "name": "@recarnot/awstfy-cli",
-  "version": "0.6.5",
+  "version": "0.6.6",
   "description": "Command line tool for AWS Terraform project management",
   "main": "awstfy--cli.js",
   "preferGlobal": true,
