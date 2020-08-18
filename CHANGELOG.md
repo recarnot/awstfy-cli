@@ -1,4 +1,16 @@
 
+<a name="v0.6.5"></a>
+## [v0.6.5](https://github.com/recarnot/awstfy_cli/compare/v0.6.4...v0.6.5) (2020-08-18)
+
+### Fix
+
+* fix log bug
+
+### Update
+
+* update version
+
+
 <a name="v0.6.4"></a>
 ## [v0.6.4](https://github.com/recarnot/awstfy_cli/compare/v0.6.3...v0.6.4) (2020-08-18)
 
