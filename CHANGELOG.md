@@ -1,4 +1,12 @@
 
+<a name="v0.6.6"></a>
+## [v0.6.6](https://github.com/recarnot/awstfy_cli/compare/v0.6.5...v0.6.6) (2020-08-18)
+
+### Remove
+
+* remove variable validation block. Needs fix
+
+
 <a name="v0.6.5"></a>
 ## [v0.6.5](https://github.com/recarnot/awstfy_cli/compare/v0.6.4...v0.6.5) (2020-08-18)
 
