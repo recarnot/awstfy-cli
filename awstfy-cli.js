@@ -12,6 +12,24 @@ if (!shell.which('terraform')) {
 };
 
 bootstrap();
+
+// Write your CLI template.
+omelette = require("omelette");
+var complete = omelette("awstfy <command> <subcommand>");
+
+complete.on("command", function() {
+  this.reply(["version", "configure", "clone"]);
+});
+
+complete.on("subcommand", function(action) {
+    this.reply(["configure", "list", "select"]);
+});
+complete.init();
+
+if (~process.argv.indexOf('--completion')) {
+  complete.setupShellInitFile();
+}
+
 init();
 
 const notifier = updateNotifier({pkg});

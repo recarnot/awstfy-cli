@@ -62,12 +62,13 @@ function initCommands() {
         .description('Configure backend.')
         .action(callBackend)
 
+    /*
     program
         .command('pipeline')
         .description('Create CI/CD pipeline.')
         .option('-f, --force', 'Allows to overwrite configuration if exist')
         .action(callCICD)
-
+    */
     program
         .command('clone')
         .description('Clones repository.')

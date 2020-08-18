@@ -18,9 +18,11 @@ npm install @recarnot/awstfy-cli
 | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
 | [![asciicast](https://asciinema.org/a/gFfwOqHwb8NSOqThWznA9BBTT.svg)](https://asciinema.org/a/gFfwOqHwb8NSOqThWznA9BBTT) | [![asciicast](https://asciinema.org/a/wsSSxz5lV5NN1zjg7p5a5nzKH.svg)](https://asciinema.org/a/wsSSxz5lV5NN1zjg7p5a5nzKH) | [![asciicast](https://asciinema.org/a/JSVQgNAGZpMC8YNOEYGR4XMkr.svg)](https://asciinema.org/a/JSVQgNAGZpMC8YNOEYGR4XMkr) |
 
-|                          Terraform                           | Reset | Clone |
-| :----------------------------------------------------------: | :---: | :---: |
-| [![asciicast](https://asciinema.org/a/pahLoggmpTs8MfylQYH1jIK4P.svg)](https://asciinema.org/a/pahLoggmpTs8MfylQYH1jIK4P) |       |       |
+
+
+|                          Terraform                           |                            Clone                             | ...futures commandes |
+| :----------------------------------------------------------: | :----------------------------------------------------------: | :------------------: |
+| [![asciicast](https://asciinema.org/a/pahLoggmpTs8MfylQYH1jIK4P.svg)](https://asciinema.org/a/pahLoggmpTs8MfylQYH1jIK4P) | [![asciicast](https://asciinema.org/a/exqxxSHqxnlkgHRevNDAyjWV3.svg)](https://asciinema.org/a/exqxxSHqxnlkgHRevNDAyjWV3) |                      |
 
 
 

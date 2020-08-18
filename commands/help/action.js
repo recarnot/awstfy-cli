@@ -106,10 +106,12 @@ function addBasicCommands() {
             name: 'console',
             description: "Opens AWS Management Console.",
         },
+        /*
         {
             name: 'pipeline',
             description: "Creates default CI pipeline for GitHub or GitLab platform."
         },
+        */
         {
             name: 'version',
             description: "Shows current version.",
