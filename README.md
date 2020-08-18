@@ -8,7 +8,9 @@
 npm install @recarnot/awstfy-cli
 ```
 
+## Demo
 
+[![asciicast](https://asciinema.org/a/PFL9Qp0c2lH7BApzw6YZ6f67h.svg)](https://asciinema.org/a/PFL9Qp0c2lH7BApzw6YZ6f67h)
 
 ## Usage
 
