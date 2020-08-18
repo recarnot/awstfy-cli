@@ -1,6 +1,7 @@
 const { prompt } = require('inquirer');
 const { configureTFCState, configureS3State } = require('./handler');
 const { TFRegionList } = require('../../../constants.js');
+const { cloudManager } = require('../../../managers/cloud_manager');
 
 var rstate_inputs = {
     type: 'list',
@@ -34,12 +35,24 @@ var rstate_tfc_inputs = [
     {
         type: 'input',
         name: 'organization',
-        message: 'Enter the name of the organization:',
+        message: 'Organization:',
         validate: function(result) {
             if(result.length < 1) {
                 return 'Must be set.'
             }
             return true
+        },
+        when: function(answers) {
+            return cloudManager.organizations.length < 1;
+        }
+    },
+    {
+        type: 'list',
+        name: 'organization',
+        message: 'Choose Terraform Cloud organization:',
+        choices: cloudManager.organizations,
+        when: function(answers) {
+            return cloudManager.organizations.length > 0;
         }
     },
     {

@@ -33,7 +33,7 @@ var provider_local_inputs = [
         }
     },
     {
-        type: 'raw_list',
+        type: 'list',
         name: 'profile',
         message: 'AWS Profile:',
         choices: profileManager.list()
