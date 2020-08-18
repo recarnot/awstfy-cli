@@ -1,4 +1,12 @@
 
+<a name="v0.6.11"></a>
+## [v0.6.11](https://github.com/recarnot/awstfy_cli/compare/v0.6.10...v0.6.11) (2020-08-18)
+
+### Clean
+
+* clean terraform commands
+
+
 <a name="v0.6.10"></a>
 ## [v0.6.10](https://github.com/recarnot/awstfy_cli/compare/v0.6.9...v0.6.10) (2020-08-18)
 
