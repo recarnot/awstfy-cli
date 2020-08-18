@@ -122,6 +122,30 @@ function addBasicCommands() {
             name: 'help',
             description: "Displays help. ",
         },
+        {
+            name: 'init',
+            description: `${colors.bold.green('Terraform')} init.`
+        },
+        {
+            name: 'plan',
+            description: `${colors.bold.green('Terraform')} plan.`
+        },
+        {
+            name: 'apply',
+            description: `${colors.bold.green('Terraform')} apply.`
+        },
+        {
+            name: 'destroy',
+            description: `${colors.bold.green('Terraform')} destroy.`
+        },
+        {
+            name: 'show',
+            description: `${colors.bold.green('Terraform')} show.`
+        },
+        {
+            name: 'state',
+            description: `${colors.bold.green('Terraform')} state.`
+        },
     ];
 
     pushCommands(commands);

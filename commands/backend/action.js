@@ -83,7 +83,7 @@ exports.callBackend = function () {
             type: 'input',
             name: 'backend_bucket',
             message: 'Bucket name:',
-            default: loadConfig('backend_bucket', ''),
+            default: loadConfig('backend_bucket', null),
             validate: function (result) {
                 if (result.length < 1) {
                     return 'Must be set.'
@@ -95,7 +95,7 @@ exports.callBackend = function () {
             type: 'input',
             name: 'backend_key',
             message: 'Key:',
-            default: loadConfig('backend_key', ''),
+            default: loadConfig('backend_key', null),
             validate: function (result) {
                 if (result.length < 1) {
                     return 'Must be set.'
@@ -107,7 +107,7 @@ exports.callBackend = function () {
             type: 'list',
             name: 'backend_region',
             message: 'Bucket region:',
-            default: loadConfig('backend_region', 'eu-west-1'),
+            default: loadConfig('backend_region', null),
             choices: TFRegionList
         }
     ];

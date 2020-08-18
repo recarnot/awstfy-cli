@@ -26,3 +26,7 @@ exports.getLocalConfigPath = function() {
 exports.getWorkspaceConfigPath = function() {
     return '.' + getInfo().name + '/workspaces.json';
 }
+
+exports.cleanConfig = function(k) {
+    config.clear();
+}

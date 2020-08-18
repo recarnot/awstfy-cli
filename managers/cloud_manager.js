@@ -1,6 +1,3 @@
-const fs = require('fs');
-const path = require('path');
-const shell = require('shelljs');
 const { loadConfig } = require("../tools/config");
 
 class CloudManager {

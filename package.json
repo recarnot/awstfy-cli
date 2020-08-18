@@ -28,6 +28,7 @@
     "inquirer": "^7.3.3",
     "log-symbols": "^4.0.0",
     "open": "^7.1.0",
+    "ora": "^5.0.0",
     "shelljs": "^0.8.4",
     "template-file": "^3.1.0",
     "update-notifier": "^4.1.1"

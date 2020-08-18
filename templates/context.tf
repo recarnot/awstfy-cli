@@ -10,7 +10,7 @@ locals {
   regex_chars     = "/[^a-zA-Z0-9-]/"
   delimiter       = "-"
   context         = lower(replace(var.context, local.regex_chars, ""))
-  stage           = lower(replace(var.stage, local.regex_chars, ""))
+  stage           = lower(replace(var.environment, local.regex_chars, ""))
   prefix          = join(local.delimiter, [local.context, local.stage])
   label_formatter = format("%s%%s", format("%s%s", join(local.delimiter, [local.context, local.stage]), local.delimiter))
   region_location = lower(split(" ", data.aws_region.current.description)[0])

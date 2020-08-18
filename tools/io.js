@@ -7,7 +7,7 @@ const Table = require('cli-table3');
 const { logSuccess, logWarning } = require('./helper');
 const { renderTemplateFile } = require('template-file')
 
-exports.saveFile = function (template_name, data, destination_name, label, force= true) {
+exports.saveFile = function (template_name, data, destination_name, label, force= true, show=true) {
     var template = path.dirname(fs.realpathSync(__filename)) + "/../templates/" + template_name
     var destination = process.cwd() + "/" + destination_name
     var inputs = {
@@ -24,10 +24,10 @@ exports.saveFile = function (template_name, data, destination_name, label, force
                 writeFile(template, data, destination);
             }
         });
-    } else writeFile(template, data, destination);
+    } else writeFile(template, data, destination, label, show);
 }
 
-function writeFile(template, data, destination, label) {
+function writeFile(template, data, destination, label="Resource", show=true) {
     try {
         renderTemplateFile(template, data)
             .then(renderedString => fs.writeFileSync(destination, renderedString, (err) => {
@@ -40,9 +40,11 @@ function writeFile(template, data, destination, label) {
         console.error(err);
         return;
     }
-
-    logSuccess('Resource configured');
-    printData(data);
+    
+    if(show) {
+        logSuccess(`${label} configured`);
+        printData(data);
+    }
 }
 
 function printData(data) {

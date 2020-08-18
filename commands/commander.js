@@ -27,6 +27,7 @@ const { callCloudInit } = require('./cloud/init/action');
 const { callConfigureProfile } = require('./profile/configure/action');
 const { callListProfile } = require('./profile/list/action');
 const { callReset } = require('./reset/action');
+const { callInit, callPlan, callApply, callDestroy, callShow, CallState } = require('./terraform/action');
 
 function initCommands() {
     var program = new Command();
@@ -36,51 +37,87 @@ function initCommands() {
         .description(getInfo().name + ' is a ' + getInfo().description)
         .action(callAllHelp)
 
-    const version_command = program
+    program
         .command('version')
         .description('Shows current version.')
         .action(callVersion);
 
-    const help_command = program
+    program
         .command('help')
         .description('Displays help.')
         .action(callAllHelp);
 
-    const context_command = program
+    program
         .command('configure')
         .description('Configure project.')
         .action(callConfigure)
 
-    const provider_command = program
+    program
         .command('provider')
         .description('Configure provider.')
         .action(callProvider)
 
-    const backend_command = program
+    program
         .command('backend')
         .description('Configure backend.')
         .action(callBackend)
 
-    const pipeline_command = program
+    program
         .command('pipeline')
         .description('Create CI/CD pipeline.')
         .option('-f, --force', 'Allows to overwrite configuration if exist')
         .action(callCICD)
 
-    const clone_command = program
+    program
         .command('clone')
         .description('Clones repository.')
         .action(callClone);
 
-    const console_command = program
+    program
         .command('console')
         .description('Opens AWS Management Console.')
         .action(callConsole);
 
-    const reset_command = program
+    program
         .command('reset')
         .description('Removes all configurations from this project.')
         .action(callReset);
+
+    program
+        .command('init')
+        .allowUnknownOption()
+        .description('Terraform init command.')
+        .action(callInit)
+    
+    program
+        .command('plan')
+        .allowUnknownOption()
+        .description('Terraform plan command.')
+        .action(callPlan)
+
+    program
+        .command('apply')
+        .allowUnknownOption()
+        .description('Terraform apply command.')
+        .action(callApply)
+
+    program
+        .command('destroy')
+        .allowUnknownOption()
+        .description('Terraform destroy command.')
+        .action(callDestroy)
+
+    program
+        .command('show')
+        .allowUnknownOption()
+        .description('Terraform show command.')
+        .action(callDestroy)
+
+    program
+        .command('state')
+        .allowUnknownOption()
+        .description('Terraform state command.')
+        .action(callDestroy)
 
     const add_help_command = new Command()
         .command('help')
@@ -242,6 +279,7 @@ function initCommands() {
         .addCommand(profile_configure_command)
         .addCommand(profile_list_command)
         .addCommand(profile_help_command)
+
 
     program.parse(process.argv)
 }
