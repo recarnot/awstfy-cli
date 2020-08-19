@@ -8,7 +8,7 @@ class CompletionManager {
 
     init() {
         try {
-            this._om = omelette(getInfo().name);
+            this._om = omelette(`${getInfo().name}|tfy`);
             this._om.tree({
                 configure: {},
                 provider: {},

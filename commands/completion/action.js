@@ -22,7 +22,7 @@ exports.setupCompletion = function () {
     }
 
     if (currentShell == undefined) {
-        logError('Auto completion not supported by this shell');
+        logError('Auto completion not supported by this shell.');
         return;
     }
 
@@ -71,7 +71,7 @@ exports.setupCompletion = function () {
     if(success) {
         logSuccess(`${getInfo().name} auto completion process ok.\nYou can source : ${destination}`);
     } else {
-        logError(`${getInfo().name} auto completion process failed`);
+        logError(`${getInfo().name} auto completion process failed.`);
     }
 
 }
