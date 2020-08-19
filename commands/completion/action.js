@@ -58,7 +58,7 @@ exports.setupCompletion = function () {
 
         console.info('PREPARE RENDER TEMPLATE');
 
-        succes = completionManager.setup();
+        succes = true;//completionManager.setup();
 
         renderTemplateFile(template, data)
             .then(renderedString => fs.writeFileSync(destination, renderedString, (err) => {
