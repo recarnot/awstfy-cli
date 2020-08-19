@@ -28,19 +28,6 @@ class CompletionManager {
 
         }
     }
-
-    setup() {
-        console.info('SETUP');
-        try {
-            this._om.setupShellInitFile();
-            return true;
-        } catch (err) {
-            console.info('ERROR setup ', err);
-        }
-
-        console.info('SETUP END');
-        return false;
-    }
 }
 
 const comManager = new CompletionManager();

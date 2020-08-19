@@ -1,15 +1,16 @@
 const fs = require('fs');
 const os = require('os');
 const ini = require('ini');
+const path = require('path');
 
 class ProfileManager {
     constructor() {
         this.refresh();
     }
 
-    _credentialsFilePath = os.homedir() + '/.aws/credentials';
-    _configFilePath = os.homedir() + '/.aws/config';
-
+    _credentialsFilePath = path.normalize(os.homedir() + '/.aws/credentials');
+    _configFilePath = path.normalize(os.homedir() + '/.aws/config');
+    
     _credentials = {};
     _credential_names = [];
     _configs = {};

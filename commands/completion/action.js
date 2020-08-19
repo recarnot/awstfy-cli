@@ -4,7 +4,6 @@ const fs = require('fs');
 const path = require('path');
 const shell = require('shelljs');
 const os = require('os');
-const { completionManager } = require("../../managers/completion_manager");
 
 exports.setupCompletion = function () {
     var currentShell = process.env.SHELL;
@@ -34,19 +33,19 @@ exports.setupCompletion = function () {
 
     switch (currentShell) {
         case 'bash':
-            script = `### ${getInfo().name} completion script ###\n"if type compdef &>/dev/null; then"\n  ${completion}() {\n    compadd -- \`${getInfo().name} --compzsh --compgen "\${CURRENT}" "\${words[CURRENT-1]}" "\${BUFFER}"\`\n  }\n  compdef ${completion} ${getInfo().name}\nelif type complete &>/dev/null; then\n  ${completion}() {\n    COMPREPLY=( $(compgen -W '$(${getInfo().name} --compbash --compgen "$COMP_CWORD" "$COMP_WORDS[COM_CWOKRDS-1]" "$COMP_LINE}"\n  }\n  complete -F ${completion} ${getInfo().name}\nfi\n`;
-            template_name = '/bash_zsh.sh';
+            //script = `### ${getInfo().name} completion script ###\n"if type compdef &>/dev/null; then"\n  ${completion}() {\n    compadd -- \`${getInfo().name} --compzsh --compgen "\${CURRENT}" "\${words[CURRENT-1]}" "\${BUFFER}"\`\n  }\n  compdef ${completion} ${getInfo().name}\nelif type complete &>/dev/null; then\n  ${completion}() {\n    COMPREPLY=( $(compgen -W '$(${getInfo().name} --compbash --compgen "$COMP_CWORD" "$COMP_WORDS[COM_CWOKRDS-1]" "$COMP_LINE}"\n  }\n  complete -F ${completion} ${getInfo().name}\nfi\n`;
+            template_name = '/completion.sh';
             break;
         case 'zsh':
-            script = `### ${getInfo().name} completion script ###\nif type compdef &>/dev/null; then\n  ${completion}() {\n    compadd -- \`${getInfo().name} --compzsh --compgen "\${CURRENT}" "\${words[CURRENT-1]}" "\${BUFFER}"\`\n  }\n  compdef ${completion} ${getInfo().name}\nelif type complete &>/dev/null; then\n  ${completion}() {\n    COMPREPLY=( $(compgen -W '$(${getInfo().name} --compbash --compgen "$COMP_CWORD" "$COMP_WORDS[COM_CWOKRDS-1]" "$COMP_LINE}"\n  }\n  complete -F ${completion} ${getInfo().name}\nfi\n`;
-            template_name = '/bash_zsh.sh';
+            //script = `### ${getInfo().name} completion script ###\nif type compdef &>/dev/null; then\n  ${completion}() {\n    compadd -- \`${getInfo().name} --compzsh --compgen "\${CURRENT}" "\${words[CURRENT-1]}" "\${BUFFER}"\`\n  }\n  compdef ${completion} ${getInfo().name}\nelif type complete &>/dev/null; then\n  ${completion}() {\n    COMPREPLY=( $(compgen -W '$(${getInfo().name} --compbash --compgen "$COMP_CWORD" "$COMP_WORDS[COM_CWOKRDS-1]" "$COMP_LINE}"\n  }\n  complete -F ${completion} ${getInfo().name}\nfi\n`;
+            template_name = '/completion.sh';
             break;
         case 'fish':
-            script = `### ${getInfo().name} completion script ###\nfunction ${completion}\n  ${getInfo().name} --compfish --compgen (count (commandline -poc)) (commandline -pt) (commandline -pb)\nend\ncomplete -f -c ${getInfo().name} -a '(${completion})'\n`;
-            template_name = '/fish.sh';
+            //script = `### ${getInfo().name} completion script ###\nfunction ${completion}\n  ${getInfo().name} --compfish --compgen (count (commandline -poc)) (commandline -pt) (commandline -pb)\nend\ncomplete -f -c ${getInfo().name} -a '(${completion})'\n`;
+            template_name = '/completion.sh';
             break;
     }
-
+    
     try {
         var data = { program: getInfo().name };
         var template = path.dirname(fs.realpathSync(__filename)) + template_name;
