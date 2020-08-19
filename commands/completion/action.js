@@ -4,8 +4,8 @@ const fs = require('fs');
 const path = require('path');
 
 exports.setupCompletion = function () {
-    var shell = process.env.shell;
-
+    var shell = process.env.SHELL;
+    
     try {
         if (shell.match(/bash/)) {
             shell = 'bash';
