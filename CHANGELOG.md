@@ -1,4 +1,89 @@
 
+<a name="v0.7.4"></a>
+## [v0.7.4](https://github.com/recarnot/awstfy_cli/compare/v0.7.3...v0.7.4) (2020-08-19)
+
+### Clean
+
+* clean package
+
+### Remove
+
+* remove omelette and add custom completion process
+
+
+<a name="v0.7.3"></a>
+## [v0.7.3](https://github.com/recarnot/awstfy_cli/compare/v0.7.2...v0.7.3) (2020-08-19)
+
+### Fix
+
+* fix completion
+* fix comlpetion
+
+
+<a name="v0.7.2"></a>
+## [v0.7.2](https://github.com/recarnot/awstfy_cli/compare/v0.6.29...v0.7.2) (2020-08-19)
+
+### Fix
+
+* fix completion
+
+### New
+
+* new version
+
+
+<a name="v0.6.29"></a>
+## [v0.6.29](https://github.com/recarnot/awstfy_cli/compare/v0.6.28...v0.6.29) (2020-08-19)
+
+### Fix
+
+* fix completion
+
+
+<a name="v0.6.28"></a>
+## [v0.6.28](https://github.com/recarnot/awstfy_cli/compare/v0.6.27...v0.6.28) (2020-08-19)
+
+### Fix
+
+* fix completion
+
+
+<a name="v0.6.27"></a>
+## [v0.6.27](https://github.com/recarnot/awstfy_cli/compare/v0.6.26...v0.6.27) (2020-08-19)
+
+### Fix
+
+* fix completion
+
+
+<a name="v0.6.26"></a>
+## [v0.6.26](https://github.com/recarnot/awstfy_cli/compare/v0.6.25...v0.6.26) (2020-08-19)
+
+### Fix
+
+* fix completion
+
+
+<a name="v0.6.25"></a>
+## [v0.6.25](https://github.com/recarnot/awstfy_cli/compare/v0.6.24...v0.6.25) (2020-08-19)
+
+### Fix
+
+* fix completion
+
+
+<a name="v0.6.24"></a>
+## [v0.6.24](https://github.com/recarnot/awstfy_cli/compare/v0.6.23...v0.6.24) (2020-08-19)
+
+### Fix
+
+* fix completion
+
+### New
+
+* new version
+
+
 <a name="v0.6.23"></a>
 ## [v0.6.23](https://github.com/recarnot/awstfy_cli/compare/v0.6.22...v0.6.23) (2020-08-19)
 
