@@ -22,7 +22,7 @@ npm install @recarnot/awstfy-cli
 
 |                          Terraform                           |                            Clone                             |                       Auto completion                        |
 | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| [![asciicast](https://asciinema.org/a/pahLoggmpTs8MfylQYH1jIK4P.svg)](https://asciinema.org/a/pahLoggmpTs8MfylQYH1jIK4P) | [![asciicast](https://asciinema.org/a/exqxxSHqxnlkgHRevNDAyjWV3.svg)](https://asciinema.org/a/exqxxSHqxnlkgHRevNDAyjWV3) | [![asciicast](https://asciinema.org/a/7Ln7u1qoLHs4Jb96PLhd2f3wY.svg)](https://asciinema.org/a/7Ln7u1qoLHs4Jb96PLhd2f3wY) |
+| [![asciicast](https://asciinema.org/a/pahLoggmpTs8MfylQYH1jIK4P.svg)](https://asciinema.org/a/pahLoggmpTs8MfylQYH1jIK4P) | [![asciicast](https://asciinema.org/a/exqxxSHqxnlkgHRevNDAyjWV3.svg)](https://asciinema.org/a/exqxxSHqxnlkgHRevNDAyjWV3) | [![asciicast](https://asciinema.org/a/s82jWFDhz1AQhz6Ee0YAbOpGo.svg)](https://asciinema.org/a/s82jWFDhz1AQhz6Ee0YAbOpGo) |
 
 
 

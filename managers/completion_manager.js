@@ -7,6 +7,7 @@ class CompletionManager {
     _om;
 
     init() {
+        /*
         try {
             this._om = omelette(getInfo().name);
             this._om.tree({
@@ -27,6 +28,7 @@ class CompletionManager {
         }catch(err) {
 
         }
+        */
     }
 }
 

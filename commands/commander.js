@@ -28,11 +28,10 @@ const { callListProfile } = require('./profile/list/action');
 const { callReset } = require('./reset/action');
 const { callInit, callPlan, callApply, callDestroy } = require('./terraform/action');
 const { setupCompletion } = require('./completion/action');
-const { completionManager } = require('../managers/completion_manager');
 
 function initCommands() {
 
-    completionManager.init();
+    //completionManager.init();
     
     var program = new Command();
 
