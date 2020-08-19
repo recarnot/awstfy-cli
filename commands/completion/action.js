@@ -26,8 +26,6 @@ exports.setupCompletion = function () {
         return;
     }
 
-    var completion = `_${getInfo().name}_complette`
-    var script;
     var template_name;
     var success = true;
 

@@ -2,7 +2,6 @@ const { Command } = require('commander');
 const { callAllHelp, callAddHelp, callEnvHelp, callVarHelp, callCloudHelp, callProfileHelp } = require('./help/action');
 const { callProvider } = require('./provider/action');
 const { callBackend } = require('./backend/action');
-const { callCICD } = require('./pipeline/action');
 const { callConfigure } = require('./configure/action');
 const { getInfo } = require('../tools/helper');
 const { callVersion } = require('./version/action');
@@ -25,14 +24,11 @@ const { callDeleteVariable } = require('./var/delete/actions');
 const { callCloudInit } = require('./cloud/init/action');
 const { callConfigureProfile } = require('./profile/configure/action');
 const { callListProfile } = require('./profile/list/action');
-const { callReset } = require('./reset/action');
 const { callInit, callPlan, callApply, callDestroy } = require('./terraform/action');
 const { setupCompletion } = require('./completion/action');
 
 function initCommands() {
 
-    //completionManager.init();
-    
     var program = new Command();
 
     program
@@ -65,13 +61,6 @@ function initCommands() {
         .description('Configure backend.')
         .action(callBackend)
 
-    /*
-    program
-        .command('pipeline')
-        .description('Create CI/CD pipeline.')
-        .option('-f, --force', 'Allows to overwrite configuration if exist')
-        .action(callCICD)
-    */
     program
         .command('clone')
         .description('Clones repository.')
@@ -81,13 +70,6 @@ function initCommands() {
         .command('console')
         .description('Opens AWS Management Console.')
         .action(callConsole);
-
-    /*
-    program
-        .command('reset')
-        .description('Removes all configurations from this project.')
-        .action(callReset);
-    */
 
     program
         .command('init')
@@ -170,7 +152,6 @@ function initCommands() {
         .addCommand(add_sns_command)
         .addCommand(add_alias_command)
         .addCommand(add_help_command)
-
 
     const env_list_command = new Command()
         .command('list')
