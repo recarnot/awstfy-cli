@@ -1,4 +1,56 @@
 
+<a name="v0.6.23"></a>
+## [v0.6.23](https://github.com/recarnot/awstfy_cli/compare/v0.6.22...v0.6.23) (2020-08-19)
+
+### Fix
+
+* fix completion
+
+
+<a name="v0.6.22"></a>
+## [v0.6.22](https://github.com/recarnot/awstfy_cli/compare/v0.6.21...v0.6.22) (2020-08-19)
+
+### Fix
+
+* fix completion
+
+
+<a name="v0.6.21"></a>
+## [v0.6.21](https://github.com/recarnot/awstfy_cli/compare/v0.6.20...v0.6.21) (2020-08-19)
+
+### Fix
+
+* fix completion
+
+
+<a name="v0.6.20"></a>
+## [v0.6.20](https://github.com/recarnot/awstfy_cli/compare/v0.6.19...v0.6.20) (2020-08-19)
+
+### Fix
+
+* fix completion
+
+
+<a name="v0.6.19"></a>
+## [v0.6.19](https://github.com/recarnot/awstfy_cli/compare/v0.6.18...v0.6.19) (2020-08-19)
+
+### Fix
+
+* fix completion
+
+
+<a name="v0.6.18"></a>
+## [v0.6.18](https://github.com/recarnot/awstfy_cli/compare/v0.6.17...v0.6.18) (2020-08-19)
+
+### Fix
+
+* fix shell check
+
+### New
+
+* new version
+
+
 <a name="v0.6.17"></a>
 ## [v0.6.17](https://github.com/recarnot/awstfy_cli/compare/v0.6.16...v0.6.17) (2020-08-19)
 
