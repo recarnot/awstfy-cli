@@ -1,12 +1,16 @@
-**awstfy** is command line tool for **AWS Terraform** project management.
+**awstfy** is command line help for **AWS Terraform** project management.
+
+
 
 
 
 ## Installation
 
+```bash
+npm install -g @recarnot/awstfy-cli
 ```
-npm install @recarnot/awstfy-cli
-```
+
+
 
 ## Demo
 
@@ -18,8 +22,6 @@ npm install @recarnot/awstfy-cli
 | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
 | [![asciicast](https://asciinema.org/a/gFfwOqHwb8NSOqThWznA9BBTT.svg)](https://asciinema.org/a/gFfwOqHwb8NSOqThWznA9BBTT) | [![asciicast](https://asciinema.org/a/wsSSxz5lV5NN1zjg7p5a5nzKH.svg)](https://asciinema.org/a/wsSSxz5lV5NN1zjg7p5a5nzKH) | [![asciicast](https://asciinema.org/a/JSVQgNAGZpMC8YNOEYGR4XMkr.svg)](https://asciinema.org/a/JSVQgNAGZpMC8YNOEYGR4XMkr) |
 
-
-
 |                          Terraform                           |                            Clone                             |                       Auto completion                        |
 | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
 | [![asciicast](https://asciinema.org/a/pahLoggmpTs8MfylQYH1jIK4P.svg)](https://asciinema.org/a/pahLoggmpTs8MfylQYH1jIK4P) | [![asciicast](https://asciinema.org/a/exqxxSHqxnlkgHRevNDAyjWV3.svg)](https://asciinema.org/a/exqxxSHqxnlkgHRevNDAyjWV3) | [![asciicast](https://asciinema.org/a/s82jWFDhz1AQhz6Ee0YAbOpGo.svg)](https://asciinema.org/a/s82jWFDhz1AQhz6Ee0YAbOpGo) |
@@ -28,7 +30,7 @@ npm install @recarnot/awstfy-cli
 
 ## Usage
 
-```bash
+```
 Usage: awstfy <command> <subcommand>
 
   Top level commands:  
@@ -37,9 +39,7 @@ Usage: awstfy <command> <subcommand>
   backend               Configures Terraform backend for this projet.
   clone                 Clones GIT repository in current directory.
   console               Opens AWS Management Console.
-  pipeline              Creates default CI pipeline for GitHub or GitLab platform.
   version               Shows current version.
-  reset                 Removes all configurations from this project.
   help                  Displays help.
   init                  Terraform init.
   plan                  Terraform plan.
@@ -72,5 +72,23 @@ Usage: awstfy <command> <subcommand>
   add dns               Manages Hosted zone.
   add state             Manages Remote state connection.
   add provider          Manages Provider alias.
+```
+
+
+
+## Auto completion
+
+**awstfy** support auto completion on **Linux based** systems : 
+
+- bash ✔
+- zsh ✔
+- fish (not test yet)
+
+```
+[testcli]$ awstfy setup-completion                         
+✔ awstfy auto completion process ok.                                     
+  You can source : /home/recarnot/.awstfy/awstfy-completion.sh             
+
+[testcli]$ source ~/.awstfy/awstfy-completion.sh 
 ```
 
