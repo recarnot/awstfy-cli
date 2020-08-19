@@ -33,6 +33,7 @@ class CompletionManager {
         try {
             this._om.setupShellInitFile();
         } catch (err) {
+            console.info('ERROR setup ', err);
             return false;
         }
 

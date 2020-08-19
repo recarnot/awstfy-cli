@@ -63,12 +63,12 @@ exports.setupCompletion = function () {
         renderTemplateFile(template, data)
             .then(renderedString => fs.writeFileSync(destination, renderedString, (err) => {
                 if (err) {
-                    console.error(err)
+                    console.info('ERROR ', err);
                     throw err;
                 }
             }));
     } catch (err) {
-        console.error(err);
+        console.info('ERROR ', err);
         return;
     }
 
