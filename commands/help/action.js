@@ -154,7 +154,7 @@ function addAddCommands() {
             description: 'Manages Storage.',
         },
         {
-            name: 'add SNS Topic',
+            name: 'add sns',
             description: 'Manages SNS Topic.',
         },
         {
