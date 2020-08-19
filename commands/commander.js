@@ -1,6 +1,4 @@
 const { Command } = require('commander');
-const omelette = require("omelette");
-
 const { callAllHelp, callAddHelp, callEnvHelp, callVarHelp, callCloudHelp, callProfileHelp } = require('./help/action');
 const { callProvider } = require('./provider/action');
 const { callBackend } = require('./backend/action');
@@ -30,10 +28,12 @@ const { callListProfile } = require('./profile/list/action');
 const { callReset } = require('./reset/action');
 const { callInit, callPlan, callApply, callDestroy } = require('./terraform/action');
 const { setupCompletion } = require('./completion/action');
+const { completionManager } = require('../managers/completion_manager');
 
 function initCommands() {
-    initCompletion();
 
+    completionManager.init();
+    
     var program = new Command();
 
     program
@@ -286,26 +286,3 @@ function initCommands() {
 }
 exports.init = initCommands;
 
-function initCompletion() {
-
-    var shell = process.env.shell;
-
-    if (shell == undefined) return;
-
-    complete = omelette(getInfo().name);
-    complete.tree({
-        configure: {},
-        provider: {},
-        backend: {},
-        version: {},
-        init: {},
-        plan: ['-varfile=', '-input='],
-        apply: {},
-        destroy: {},
-        profile: ['list', 'configure'],
-        env: ['select', 'list', 'show', 'new'],
-        var: ['add', 'list', 'update', 'delete'],
-        cloud: ['init'],
-        add: ['vpc', 'storage', 'sns', 'dns', 'state', 'provider'],
-    }).init();
-}

@@ -4,6 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const shell = require('shelljs');
 const os = require('os');
+const { completionManager } = require("../../managers/completion_manager");
 
 exports.setupCompletion = function () {
     var currentShell = process.env.SHELL;
@@ -43,8 +44,6 @@ exports.setupCompletion = function () {
             template_name = '/fish.sh';
             break;
     }
-    console.info(currentShell);
-    console.info(template_name);
 
     try {
         var data = { program: getInfo().name };
@@ -55,6 +54,8 @@ exports.setupCompletion = function () {
         if(!shell.test('-d', folder)) {
             shell.mkdir(folder);
         }
+
+        completionManager.setup();
 
         renderTemplateFile(template, data)
             .then(renderedString => fs.writeFileSync(destination, renderedString, (err) => {
