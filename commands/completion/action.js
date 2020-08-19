@@ -1,4 +1,4 @@
-const { getInfo, logError } = require("../../tools/helper");
+const { getInfo, logError, logSuccess } = require("../../tools/helper");
 const { renderTemplateFile } = require('template-file')
 const fs = require('fs');
 const path = require('path');
@@ -18,7 +18,7 @@ exports.setupCompletion = function () {
             currentShell = 'fish';
         }
     } catch (err) {
-        currentShell = 'bash';
+        
     }
 
     if (currentShell == undefined) {
@@ -55,8 +55,6 @@ exports.setupCompletion = function () {
             shell.mkdir(folder);
         }
 
-        completionManager.setup();
-
         renderTemplateFile(template, data)
             .then(renderedString => fs.writeFileSync(destination, renderedString, (err) => {
                 if (err) {
@@ -68,4 +66,12 @@ exports.setupCompletion = function () {
         console.error(err);
         return;
     }
+
+    var success = completionManager.setup();
+    if(success) {
+        logSuccess(`${getInfo().name} auto completion process ok.\nYou can source : ${destination}`);
+    } else {
+        logError(`${getInfo().name} auto completion process failed`);
+    }
+
 }
