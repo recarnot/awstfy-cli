@@ -18,7 +18,8 @@ exports.setupCompletion = function () {
             currentShell = 'fish';
         }
     } catch (err) {
-        currentShell = 'bash';
+        //For Windows test
+        //currentShell = 'bash';
     }
 
     if (currentShell == undefined) {
@@ -29,7 +30,7 @@ exports.setupCompletion = function () {
     var completion = `_${getInfo().name}_complette`
     var script;
     var template_name;
-    var success = false;
+    var success = true;
 
     switch (currentShell) {
         case 'bash':
@@ -56,23 +57,16 @@ exports.setupCompletion = function () {
             shell.mkdir(folder);
         }
 
-        console.info('PREPARE RENDER TEMPLATE');
-
-        succes = true;//completionManager.setup();
-
         renderTemplateFile(template, data)
             .then(renderedString => fs.writeFileSync(destination, renderedString, (err) => {
                 if (err) {
-                    console.info('ERROR ', err);
+                    success = false;
                     throw err;
                 }
             }));
     } catch (err) {
-        console.info('ERROR ', err);
-        return;
+        success = false;
     }
-
-    console.info('RENDER TEMPLATE STATE = ', success);
     
     if(success) {
         logSuccess(`${getInfo().name} auto completion process ok.\nYou can source : ${destination}`);
