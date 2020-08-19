@@ -1,4 +1,4 @@
-### {{program}} completion script ###
+#### {{program}} completion script ####
 _{{program}}_complete()
 {
     local cur prev opts base
@@ -48,4 +48,4 @@ _{{program}}_complete()
 }
 complete -F _{{program}}_complete {{program}}
 complete -F _{{program}}_complete tfy
-### {{program}} completion script end ###
+#### {{program}} completion script end ####
