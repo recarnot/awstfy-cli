@@ -32,15 +32,15 @@ exports.setupCompletion = function () {
     switch (currentShell) {
         case 'bash':
             script = `### ${getInfo().name} completion script ###\n"if type compdef &>/dev/null; then"\n  ${completion}() {\n    compadd -- \`${getInfo().name} --compzsh --compgen "\${CURRENT}" "\${words[CURRENT-1]}" "\${BUFFER}"\`\n  }\n  compdef ${completion} ${getInfo().name}\nelif type complete &>/dev/null; then\n  ${completion}() {\n    COMPREPLY=( $(compgen -W '$(${getInfo().name} --compbash --compgen "$COMP_CWORD" "$COMP_WORDS[COM_CWOKRDS-1]" "$COMP_LINE}"\n  }\n  complete -F ${completion} ${getInfo().name}\nfi\n`;
-            template_name = '/bash_zsh.tpl';
+            template_name = '/bash_zsh.sh';
             break;
         case 'zsh':
             script = `### ${getInfo().name} completion script ###\nif type compdef &>/dev/null; then\n  ${completion}() {\n    compadd -- \`${getInfo().name} --compzsh --compgen "\${CURRENT}" "\${words[CURRENT-1]}" "\${BUFFER}"\`\n  }\n  compdef ${completion} ${getInfo().name}\nelif type complete &>/dev/null; then\n  ${completion}() {\n    COMPREPLY=( $(compgen -W '$(${getInfo().name} --compbash --compgen "$COMP_CWORD" "$COMP_WORDS[COM_CWOKRDS-1]" "$COMP_LINE}"\n  }\n  complete -F ${completion} ${getInfo().name}\nfi\n`;
-            template_name = '/bash_zsh.tpl';
+            template_name = '/bash_zsh.sh';
             break;
         case 'fish':
             script = `### ${getInfo().name} completion script ###\nfunction ${completion}\n  ${getInfo().name} --compfish --compgen (count (commandline -poc)) (commandline -pt) (commandline -pb)\nend\ncomplete -f -c ${getInfo().name} -a '(${completion})'\n`;
-            template_name = '/fish.tpl';
+            template_name = '/fish.sh';
             break;
     }
     console.info(currentShell);
@@ -55,7 +55,7 @@ exports.setupCompletion = function () {
         if(!shell.test('-d', folder)) {
             shell.mkdir(folder);
         }
-        
+
         renderTemplateFile(template, data)
             .then(renderedString => fs.writeFileSync(destination, renderedString, (err) => {
                 if (err) {
