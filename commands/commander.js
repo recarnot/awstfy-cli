@@ -1,4 +1,5 @@
 const { Command } = require('commander');
+const omelette = require("omelette");
 
 const { callAllHelp, callAddHelp, callEnvHelp, callVarHelp, callCloudHelp, callProfileHelp } = require('./help/action');
 const { callProvider } = require('./provider/action');
@@ -28,8 +29,11 @@ const { callConfigureProfile } = require('./profile/configure/action');
 const { callListProfile } = require('./profile/list/action');
 const { callReset } = require('./reset/action');
 const { callInit, callPlan, callApply, callDestroy } = require('./terraform/action');
+const { setupCompletion } = require('./completion/action');
 
 function initCommands() {
+    initCompletion();
+
     var program = new Command();
 
     program
@@ -85,13 +89,13 @@ function initCommands() {
         .description('Removes all configurations from this project.')
         .action(callReset);
     */
-   
+
     program
         .command('init')
         .allowUnknownOption()
         .description('Terraform init command.')
         .action(callInit)
-    
+
     program
         .command('plan')
         .allowUnknownOption()
@@ -110,6 +114,12 @@ function initCommands() {
         .description('Terraform destroy command.')
         .action(callDestroy)
 
+    program
+        .command("setup-completion")
+        .allowUnknownOption()
+        .description('Setup auto completion.')
+        .action(setupCompletion);
+    
     const add_help_command = new Command()
         .command('help')
         .description('Displays help for add command')
@@ -275,3 +285,27 @@ function initCommands() {
     program.parse(process.argv)
 }
 exports.init = initCommands;
+
+function initCompletion() {
+
+    var shell = process.env.shell;
+
+    if (shell == undefined) return;
+
+    complete = omelette(getInfo().name);
+    complete.tree({
+        configure: {},
+        provider: {},
+        backend: {},
+        version: {},
+        init: {},
+        plan: ['-varfile=', '-input='],
+        apply: {},
+        destroy: {},
+        profile: ['list', 'configure'],
+        env: ['select', 'list', 'show', 'new'],
+        var: ['add', 'list', 'update', 'delete'],
+        cloud: ['init'],
+        add: ['vpc', 'storage', 'sns', 'dns', 'state', 'provider'],
+    }).init();
+}
