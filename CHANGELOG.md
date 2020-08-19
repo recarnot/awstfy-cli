@@ -1,4 +1,24 @@
 
+<a name="v0.6.16"></a>
+## [v0.6.16](https://github.com/recarnot/awstfy_cli/compare/v0.6.15...v0.6.16) (2020-08-19)
+
+### Fix
+
+* fix completion
+
+
+<a name="v0.6.15"></a>
+## [v0.6.15](https://github.com/recarnot/awstfy_cli/compare/v0.6.14...v0.6.15) (2020-08-19)
+
+### New
+
+* new version
+
+### Try
+
+* try omelette
+
+
 <a name="v0.6.14"></a>
 ## [v0.6.14](https://github.com/recarnot/awstfy_cli/compare/v0.6.13...v0.6.14) (2020-08-18)
 
