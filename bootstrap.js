@@ -4,6 +4,8 @@ const { getLocalConfigPath, getWorkspaceConfigPath } = require('./tools/config')
 const { workspaceModel } = require('./managers/workspaces_manager');
 const { getWorkspaces } = require('./commands/env/workspace');
 const { getInfo } = require('./tools/helper');
+const { commandManager } = require('./managers/command_manager');
+const { Command } = require('commander');
 
 exports.bootstrap = function() {
     var confFolder = getLocalConfigPath();
@@ -20,7 +22,9 @@ exports.bootstrap = function() {
         initFile(varFilename);
     }
 
+    commandManager.init(new Command());
     workspaceModel.init();
+
     getWorkspaces();
 }
 

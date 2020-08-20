@@ -2,8 +2,34 @@ const { prompt } = require('inquirer');
 const path = require('path');
 const { loadConfig } = require('../../tools/config');
 const { configureContext } = require('./handler');
+const { commandManager } = require('../../managers/command_manager');
+const VariableSpec = require('../../models/VariableSpec');
+const ContextSpec = require('./ContextSpec');
 
-exports.callConfigure = function () {
+exports.callConfigure = function (command) {
+    if (command.silent) {
+        var context = new ContextSpec();
+        cname = new VariableSpec("context-name");
+        cenv = new VariableSpec("context-env");
+        cversion = new VariableSpec("context-version");
+        context.register(cname);
+        context.register(cenv);
+        context.register(cversion);
+        status = context.check(command);
+
+        if (status.success) {
+            var conf = {
+                context : cname.value,
+                environment : cenv.value,
+                tf_version : cversion.value,
+            }
+            configureContext(conf);
+        }
+        else console.info(status.message);
+
+        return;
+    }
+    
     var init_inputs = [
         {
             type: 'input',

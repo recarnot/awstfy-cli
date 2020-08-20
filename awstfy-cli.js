@@ -5,7 +5,6 @@ const { init } = require('./commands/commander');
 const { bootstrap } = require('./bootstrap');
 const updateNotifier = require('update-notifier');
 const pkg = require('./package.json');
-const { getInfo } = require('./tools/helper');
 
 if (!shell.which('terraform')) {
   shell.echo('Sorry, this tool requires terraform');

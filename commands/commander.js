@@ -26,10 +26,11 @@ const { callConfigureProfile } = require('./profile/configure/action');
 const { callListProfile } = require('./profile/list/action');
 const { callInit, callPlan, callApply, callDestroy } = require('./terraform/action');
 const { setupCompletion } = require('./completion/action');
+const { commandManager } = require('../managers/command_manager');
 
 function initCommands() {
 
-    var program = new Command();
+    var program = commandManager.program;
 
     program
         .version(getInfo().version)
@@ -49,6 +50,10 @@ function initCommands() {
     program
         .command('configure')
         .description('Configure project.')
+        .option('--silent', 'Disabled interactive mode.')
+        .option('--context-name <value>', 'Project name')
+        .option('--context-env <value>', 'Project name')
+        .option('--context-version <value>', 'Project name')
         .action(callConfigure)
 
     program
@@ -260,7 +265,6 @@ function initCommands() {
         .addCommand(profile_configure_command)
         .addCommand(profile_list_command)
         .addCommand(profile_help_command)
-
 
     program.parse(process.argv)
 }
