@@ -1,4 +1,56 @@
 
+<a name="v0.7.10"></a>
+## [v0.7.10](https://github.com/recarnot/awstfy_cli/compare/v0.7.9...v0.7.10) (2020-08-21)
+
+### Fix
+
+* fix some properties
+
+
+<a name="v0.7.9"></a>
+## [v0.7.9](https://github.com/recarnot/awstfy_cli/compare/v0.7.8...v0.7.9) (2020-08-21)
+
+### Update
+
+* update some silent command (wip)
+
+
+<a name="v0.7.8"></a>
+## [v0.7.8](https://github.com/recarnot/awstfy_cli/compare/v0.7.7...v0.7.8) (2020-08-20)
+
+### Try
+
+* try completion
+
+
+<a name="v0.7.7"></a>
+## [v0.7.7](https://github.com/recarnot/awstfy_cli/compare/v0.7.6...v0.7.7) (2020-08-20)
+
+### Try
+
+* try silent mode
+
+
+<a name="v0.7.6"></a>
+## [v0.7.6](https://github.com/recarnot/awstfy_cli/compare/v0.7.5...v0.7.6) (2020-08-20)
+
+### Try
+
+* try silent mode
+
+
+<a name="v0.7.5"></a>
+## [v0.7.5](https://github.com/recarnot/awstfy_cli/compare/v0.7.4...v0.7.5) (2020-08-20)
+
+### New
+
+* new version
+
+### Update
+
+* update doc
+
+
 <a name="v0.7.4"></a>
 ## [v0.7.4](https://github.com/recarnot/awstfy_cli/compare/v0.7.3...v0.7.4) (2020-08-19)
 
