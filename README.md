@@ -1,13 +1,11 @@
-**awstfy** is command line help for **AWS Terraform** project management.
-
-
+**awstfy** is command line helper for **AWS Terraform** project management.
 
 
 
 ## Installation
 
 ```bash
-npm install -g @recarnot/awstfy-cli
+npm i -g @recarnot/awstfy-cli
 ```
 
 
@@ -25,6 +23,16 @@ npm install -g @recarnot/awstfy-cli
 |                          Terraform                           |                            Clone                             |                       Auto completion                        |
 | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
 | [![asciicast](https://asciinema.org/a/pahLoggmpTs8MfylQYH1jIK4P.svg)](https://asciinema.org/a/pahLoggmpTs8MfylQYH1jIK4P) | [![asciicast](https://asciinema.org/a/exqxxSHqxnlkgHRevNDAyjWV3.svg)](https://asciinema.org/a/exqxxSHqxnlkgHRevNDAyjWV3) | [![asciicast](https://asciinema.org/a/s82jWFDhz1AQhz6Ee0YAbOpGo.svg)](https://asciinema.org/a/s82jWFDhz1AQhz6Ee0YAbOpGo) |
+
+
+
+## Silent commands
+
+*!! Work in progress !!*
+
+You can use some commands in silent mode to allow script or automation process. Here is a quick dirty demo :
+
+[![asciicast](https://asciinema.org/a/lSm8He8g7m5Bpz1INJiLnhpf8.svg)](https://asciinema.org/a/lSm8He8g7m5Bpz1INJiLnhpf8) 
 
 
 
@@ -68,7 +76,7 @@ Usage: awstfy <command> <subcommand>
   add <resource>: Add Terraform resources
   add vpc               Manages VPC.
   add storage           Manages Storage.
-  add SNS Topic         Manages SNS Topic.
+  add sns		        Manages SNS Topic.
   add dns               Manages Hosted zone.
   add state             Manages Remote state connection.
   add provider          Manages Provider alias.
@@ -78,7 +86,7 @@ Usage: awstfy <command> <subcommand>
 
 ## Auto completion
 
-**awstfy** support auto completion on **Linux based** systems : 
+**awstfy** offer auto completion on **Linux based** systems : 
 
 - bash ✔
 - zsh ✔
@@ -92,3 +100,4 @@ Usage: awstfy <command> <subcommand>
 [testcli]$ source ~/.awstfy/awstfy-completion.sh 
 ```
 
+[![asciicast](https://asciinema.org/a/s82jWFDhz1AQhz6Ee0YAbOpGo.svg)](https://asciinema.org/a/s82jWFDhz1AQhz6Ee0YAbOpGo)

@@ -1,7 +1,7 @@
 {
   "name": "@recarnot/awstfy-cli",
   "version": "0.7.9",
-  "description": "Command line tool for AWS Terraform project management",
+  "description": "Command line helper for AWS Terraform project management",
   "main": "./awstfy-cli.js",
   "preferGlobal": true,
   "bin": {

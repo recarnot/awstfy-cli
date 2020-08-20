@@ -10,7 +10,7 @@ exports.callConfigure = function (command) {
     if (command.silent) {
         var spec = new ConfSpec();
         var cname = new VariableSpec("context");
-        var cenv = new VariableSpec("env");
+        var cenv = new VariableSpec("environment");
         var cversion = new VariableSpec("terraform");
         
         spec.register(cname);

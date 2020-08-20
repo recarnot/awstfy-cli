@@ -32,7 +32,7 @@ exports.callAllHelp = function() {
 
         console.info('');
         console.log(data)
-        console.info(colors.gray('Just a command line tool for AWS Terraform project (' + getInfo().version + ')'));
+        console.info(colors.gray('Just a command line helper for AWS Terraform project (' + getInfo().version + ')'));
         console.info('');
         console.info('Usage: %s <command> <subcommand>', getInfo().name);
         console.info('');

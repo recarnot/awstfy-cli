@@ -52,7 +52,7 @@ function initCommands() {
         .description('Configure project.')
         .option('--silent', 'Disabled interactive mode.')
         .option('--context <value>', "Project's name.")
-        .option('--env <value>', "Working environment.")
+        .option('--environment <value>', "Working environment.")
         .option('--terraform <value>', 'Terraform version.')
         .action(callConfigure)
 

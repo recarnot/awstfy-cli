@@ -7,7 +7,7 @@ _{{program}}_complete()
     prev="${COMP_WORDS[COMP_CWORD-1]}"
 
     #Dedicated rule for Terraform version
-    if [[ $prev = "--terraform-version" ]] ; then 
+    if [[ $prev = "--terraform" ]] ; then 
         COMPREPLY=( $(compgen -W "0.12 0.13" -- ${cur}) )
         return 0
     fi
@@ -29,10 +29,10 @@ _{{program}}_complete()
         COMPREPLY=( $(compgen -W "app.terraform.io" -- ${cur}) )
         return 0
     fi
-    
+
     #Silent mode for 'configure' command
     if [[ ${COMP_WORDS[1]} == *"configure"* ]] ; then 
-        COMPREPLY=( $(compgen -W "--silent --context --env --terraform" -- ${cur}) )
+        COMPREPLY=( $(compgen -W "--silent --context --environment --terraform" -- ${cur}) )
     fi
 
     #Silent mode for 'provider' command
@@ -50,7 +50,7 @@ _{{program}}_complete()
         return 0
     fi
     
-    basic="configure provider backend version help init plan apply destroy"
+    basic="configure provider backend version help init plan apply destroy setup-completion"
     complex="add env profile cloud var"
     opts=$basic" "$complex
 
