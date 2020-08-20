@@ -53,7 +53,7 @@ function initCommands() {
         .option('--silent', 'Disabled interactive mode.')
         .option('--context-name <value>', 'Project name')
         .option('--context-env <value>', 'Project name')
-        .option('--context-version <value>', 'Project name')
+        .option('--terraform-version <value>', 'Project name')
         .action(callConfigure)
 
     program

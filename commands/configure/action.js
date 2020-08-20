@@ -11,7 +11,7 @@ exports.callConfigure = function (command) {
         var context = new ContextSpec();
         cname = new VariableSpec("context-name");
         cenv = new VariableSpec("context-env");
-        cversion = new VariableSpec("context-version");
+        cversion = new VariableSpec("terraform-version");
         context.register(cname);
         context.register(cenv);
         context.register(cversion);

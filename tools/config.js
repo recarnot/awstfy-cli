@@ -20,11 +20,11 @@ exports.loadConfig = function(key, default_value) {
 }
 
 exports.getLocalConfigPath = function() {
-    return '.' + getInfo().name;
+    return process.cwd() + '/.' + getInfo().name;
 }
 
 exports.getWorkspaceConfigPath = function() {
-    return '.' + getInfo().name + '/workspaces.json';
+    return process.cwd() + '/.' + getInfo().name + '/workspaces.json';
 }
 
 exports.cleanConfig = function(k) {

@@ -47,5 +47,4 @@ _{{program}}_complete()
    return 0
 }
 complete -F _{{program}}_complete {{program}}
-complete -F _{{program}}_complete tfy
 #### {{program}} completion script end ####
