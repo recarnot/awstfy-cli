@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+//Have fun 👍
 
 const shell = require('shelljs');
 const { init } = require('./commands/commander');
