@@ -3,9 +3,76 @@ const { configureLocalBackend, configureTFCBackend, configureS3Backend } = requi
 const { saveConfig, loadConfig } = require('../../tools/config');
 const { TFRegionList } = require('../../constants');
 const { cloudManager } = require("../../managers/cloud_manager");
+const VariableSpec = require('../../models/Variable');
+const ConfSpec = require('../../models/ConfSpec');
 
 
-exports.callBackend = function () {
+exports.callBackend = function (command) {
+    if (command.silent) {
+        var spec;
+        var status;
+        var ctype = new VariableSpec('backend-type');
+        spec = new ConfSpec();
+        spec.register(ctype);
+        status = spec.check(command);
+
+        if (status.success) {
+            switch (ctype.value) {
+                case "local":
+                    configureLocalBackend({});
+                    return;
+                case "tfc":
+                    var tfc_host = new VariableSpec('tfc-host');
+                    var tfc_organisation = new VariableSpec('tfc-organization');
+                    var tfc_workspace = new VariableSpec('tfc-workspace');
+                    spec = new ConfSpec();
+                    spec.register(tfc_host);
+                    spec.register(tfc_organisation);
+                    spec.register(tfc_workspace);
+                    status = spec.check(command);
+
+                    if (status.success) {
+                        var conf = {
+                            backend_host: tfc_host.value,
+                            backend_organization: tfc_organisation.value,
+                            backend_workspace: tfc_workspace.value,
+                        }
+                        configureTFCBackend(conf);
+                    }
+                    else console.info(status.message);
+
+                    return;
+                case "s3":
+                    var s3_bucket_name = new VariableSpec('bucket-name');
+                    var s3_bucket_key = new VariableSpec('bucket-key');
+                    var s3_bucket_region = new VariableSpec('bucket-region');
+                    spec = new ConfSpec();
+                    spec.register(s3_bucket_name);
+                    spec.register(s3_bucket_key);
+                    spec.register(s3_bucket_region);
+                    status = spec.check(command);
+
+                    if (status.success) {
+                        var conf = {
+                            backend_bucket: s3_bucket_name.value,
+                            backend_key: s3_bucket_key.value,
+                            backend_region: s3_bucket_region.value,
+                        }
+                        configureS3Backend(conf);
+                    }
+                    else console.info(status.message);
+
+                    return;
+                default:
+                    logError("--type must be 'local' or 'tfc'");
+                    return;
+            }
+        } else {
+            console.info(status.message);
+        }
+        return;
+    }
+
     var backend_inputs = {
         type: 'list',
         name: 'backend_type',

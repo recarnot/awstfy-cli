@@ -3,19 +3,20 @@ const path = require('path');
 const { loadConfig } = require('../../tools/config');
 const { configureContext } = require('./handler');
 const { commandManager } = require('../../managers/command_manager');
-const VariableSpec = require('../../models/VariableSpec');
-const ContextSpec = require('./ContextSpec');
+const VariableSpec = require('../../models/Variable');
+const ConfSpec = require('../../models/ConfSpec');
 
 exports.callConfigure = function (command) {
     if (command.silent) {
-        var context = new ContextSpec();
-        cname = new VariableSpec("context-name");
-        cenv = new VariableSpec("context-env");
-        cversion = new VariableSpec("terraform-version");
-        context.register(cname);
-        context.register(cenv);
-        context.register(cversion);
-        status = context.check(command);
+        var spec = new ConfSpec();
+        var cname = new VariableSpec("context");
+        var cenv = new VariableSpec("env");
+        var cversion = new VariableSpec("terraform");
+        
+        spec.register(cname);
+        spec.register(cenv);
+        spec.register(cversion);
+        status = spec.check(command);
 
         if (status.success) {
             var conf = {

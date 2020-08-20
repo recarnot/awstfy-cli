@@ -6,14 +6,50 @@ _{{program}}_complete()
     cur="${COMP_WORDS[COMP_CWORD]}"
     prev="${COMP_WORDS[COMP_CWORD-1]}"
 
-    if [[ $prev = "--context-version" ]] ; then 
+    #Dedicated rule for Terraform version
+    if [[ $prev = "--terraform-version" ]] ; then 
         COMPREPLY=( $(compgen -W "0.12 0.13" -- ${cur}) )
-    fi
-    
-    if [[ $COMP_CWORD -gt 2 ]] ; then 
         return 0
     fi
 
+    #Dedicated rule for Provider type
+    if [[ $prev = "--provider-type" ]] ; then 
+        COMPREPLY=( $(compgen -W "local tfc" -- ${cur}) )
+        return 0
+    fi
+
+    #Dedicated rule for Backend type
+    if [[ $prev = "--backend-type" ]] ; then 
+        COMPREPLY=( $(compgen -W "local tfc s3" -- ${cur}) )
+        return 0
+    fi
+    
+    #Dedicated rule for Terraform Cloud host
+    if [[ $prev = "--tfc-host" ]] ; then 
+        COMPREPLY=( $(compgen -W "app.terraform.io" -- ${cur}) )
+        return 0
+    fi
+    
+    #Silent mode for 'configure' command
+    if [[ ${COMP_WORDS[1]} == *"configure"* ]] ; then 
+        COMPREPLY=( $(compgen -W "--silent --context --env --terraform" -- ${cur}) )
+    fi
+
+    #Silent mode for 'provider' command
+    if [[ ${COMP_WORDS[1]} == *"provider"* ]] ; then 
+        COMPREPLY=( $(compgen -W "--silent --provider-type --aws-profile --aws-region --tfc-ket --tfc-secret --tfc-region" -- ${cur}) )
+    fi
+
+    #Silent mode for 'backend' command
+    if [[ ${COMP_WORDS[1]} == *"backend"* ]] ; then 
+        COMPREPLY=( $(compgen -W "--silent --backend-type --tfc-host --tfc-organization --tfc-workspace --bucket-name --bucket-key --bucket-region" -- ${cur}) )
+    fi
+
+    ##Disabel loop on the rest of basic commands
+    if [[ $COMP_CWORD -gt 2 ]] ; then 
+        return 0
+    fi
+    
     basic="configure provider backend version help init plan apply destroy"
     complex="add env profile cloud var"
     opts=$basic" "$complex

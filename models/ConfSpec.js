@@ -1,7 +1,7 @@
 const logSymbols = require("log-symbols");
 const colors = require('colors/safe');
 
-class ContextSpec {
+class ConfSpec {
     constructor() {
 
     }
@@ -46,6 +46,6 @@ class ContextSpec {
         return content;
     }
 }
-module.exports = ContextSpec;
+module.exports = ConfSpec;
 
 

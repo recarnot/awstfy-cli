@@ -51,19 +51,34 @@ function initCommands() {
         .command('configure')
         .description('Configure project.')
         .option('--silent', 'Disabled interactive mode.')
-        .option('--context-name <value>', 'Project name')
-        .option('--context-env <value>', 'Project name')
-        .option('--terraform-version <value>', 'Project name')
+        .option('--context <value>', "Project's name.")
+        .option('--env <value>', "Working environment.")
+        .option('--terraform <value>', 'Terraform version.')
         .action(callConfigure)
 
     program
         .command('provider')
         .description('Configure provider.')
+        .option('--silent', 'Disabled interactive mode.')
+        .option('--provider-type <local|tfc>', "Chosse provider type between 'local' and 'Terraform Cloud'.")
+        .option('--aws-profile <value>', "AWS profile.")
+        .option('--aws-region <value>', "AWS region.")
+        .option('--tfc-key <value>', 'Terraform Cloud variable which embed AWS access key id.')
+        .option('--tfc-secret <value>', 'Terraform Cloud variable which embed AWS secret id.')
+        .option('--tfc-region <value>', 'Terraform Cloud variable which embed AWS region.')
         .action(callProvider)
 
     program
         .command('backend')
         .description('Configure backend.')
+        .option('--silent', 'Disabled interactive mode.')
+        .option('--backend-type <local|tfc|s3>', "Chosse backend type between 'local', 'Terraform Cloud' and 's3'.")
+        .option('--tfc-host <value>', 'Terraform Cloud host.')
+        .option('--tfc-organization <value>', 'Terraform Cloud organization.')
+        .option('--tfc-workspace <value>', 'Terraform Cloud workspace.')
+        .option('--bucket-name <value>', "AWS S3 Bucket prefix.")
+        .option('--bucket-key <value>', "AWS S3 Bucket key.")
+        .option('--bucket-region <value>', "AWS S3 Bucket prefix.")
         .action(callBackend)
 
     program

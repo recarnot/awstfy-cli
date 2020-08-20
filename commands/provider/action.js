@@ -3,8 +3,71 @@ const { loadConfig, saveConfig } = require('../../tools/config');
 const { configureLocalProvider, configureTFCProvider } = require('./handler');
 const { TFRegionList } = require('../../constants.js');
 const { profileManager } = require('../../managers/profiles_manager');
+const ConfSpec = require('../../models/ConfSpec');
+const VariableSpec = require('../../models/Variable');
+const { logError } = require('../../tools/helper');
 
-function action() {
+exports.callProvider = function (command) {
+
+    if (command.silent) {
+        var spec;
+        var status;
+        var ctype = new VariableSpec('provider-type');
+        spec = new ConfSpec();
+        spec.register(ctype);
+        status = spec.check(command);
+
+        if (status.success) {
+            switch (ctype.value) {
+                case "local":
+                    var aws_profile = new VariableSpec('aws-profile');
+                    var aws_region = new VariableSpec('aws-region');
+                    spec = new ConfSpec();
+                    spec.register(aws_profile);
+                    spec.register(aws_region);
+                    status = spec.check(command);
+
+                    if (status.success) {
+                        var conf = {
+                            aws_profile: aws_profile.value,
+                            aws_region: aws_region.value,
+                        }
+                        configureLocalProvider(conf);
+                    }
+                    else console.info(status.message);
+
+                    return;
+                case "tfc":
+                    var tfc_access = new VariableSpec('tfc-key');
+                    var tfc_secret = new VariableSpec('tfc-secret');
+                    var tfc_region = new VariableSpec('tfc-region');
+                    spec = new ConfSpec();
+                    spec.register(tfc_access);
+                    spec.register(tfc_secret);
+                    spec.register(tfc_region);
+                    status = spec.check(command);
+
+                    if (status.success) {
+                        var conf = {
+                            access_key_var: tfc_access.value,
+                            secret_key_var: tfc_secret.value,
+                            region_var: tfc_region.value,
+                        }
+                        configureTFCProvider(conf);
+                    }
+                    else console.info(status.message);
+
+                    return;
+                default:
+                    logError("--type must be 'local' or 'tfc'");
+                    return;
+            }
+        } else {
+            console.info(status.message);
+        }
+        return;
+    }
+
     var provider_inputs = {
         type: 'list',
         name: 'provider_type',
@@ -92,5 +155,3 @@ function action() {
         }
     })
 }
-
-exports.callProvider = action
