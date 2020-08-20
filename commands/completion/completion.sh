@@ -6,6 +6,10 @@ _{{program}}_complete()
     cur="${COMP_WORDS[COMP_CWORD]}"
     prev="${COMP_WORDS[COMP_CWORD-1]}"
 
+    if [[ $prev = "--context-version" ]] ; then 
+        COMPREPLY=( $(compgen -W "0.12 0.13" -- ${cur}) )
+    fi
+    
     if [[ $COMP_CWORD -gt 2 ]] ; then 
         return 0
     fi
