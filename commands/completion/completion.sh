@@ -33,24 +33,27 @@ _{{program}}_complete()
     #Silent mode for 'configure' command
     if [[ ${COMP_WORDS[1]} == *"configure"* ]] ; then 
         COMPREPLY=( $(compgen -W "--silent --context --environment --terraform" -- ${cur}) )
+        return 0
     fi
 
     #Silent mode for 'provider' command
     if [[ ${COMP_WORDS[1]} == *"provider"* ]] ; then 
         COMPREPLY=( $(compgen -W "--silent --provider-type --aws-profile --aws-region --tfc-ket --tfc-secret --tfc-region" -- ${cur}) )
+        return 0
     fi
 
     #Silent mode for 'backend' command
     if [[ ${COMP_WORDS[1]} == *"backend"* ]] ; then 
         COMPREPLY=( $(compgen -W "--silent --backend-type --tfc-host --tfc-organization --tfc-workspace --bucket-name --bucket-key --bucket-region" -- ${cur}) )
+        return 0
     fi
-
+    
     ##Disabel loop on the rest of basic commands
     if [[ $COMP_CWORD -gt 2 ]] ; then 
         return 0
     fi
     
-    basic="configure provider backend version help init plan apply destroy setup-completion"
+    basic="configure provider backend version help init plan apply destroy setup-completion module"
     complex="add env profile cloud var"
     opts=$basic" "$complex
 

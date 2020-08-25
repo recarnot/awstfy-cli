@@ -27,6 +27,9 @@ const { callListProfile } = require('./profile/list/action');
 const { callInit, callPlan, callApply, callDestroy } = require('./terraform/action');
 const { setupCompletion } = require('./completion/action');
 const { commandManager } = require('../managers/command_manager');
+const { callCostEstimate } = require('./cost/estimate/action');
+const { callCostCheck } = require('./cost/check/action');
+const { callModule } = require('./module/action');
 
 function initCommands() {
 
@@ -114,6 +117,11 @@ function initCommands() {
         .allowUnknownOption()
         .description('Terraform destroy command.')
         .action(callDestroy)
+
+    program
+        .command('module')
+        .description('Add Terraform module.')
+        .action(callModule)
 
     program
         .command("setup-completion")
@@ -280,6 +288,31 @@ function initCommands() {
         .addCommand(profile_configure_command)
         .addCommand(profile_list_command)
         .addCommand(profile_help_command)
+
+    /*
+    const cost_estimate_command = new Command()
+        .command('estimate')
+        .allowUnknownOption()
+        .description('Estimates cost using plan file (before deploy).')
+        .action(callCostEstimate)
+    
+    const cost_check_command = new Command()
+        .command('check')
+        .description('Estimates cost using state file (after deploy).')
+        .action(callCostCheck)
+
+    const cost_help_command = new Command()
+        .command('help')
+        .description('Displays help for cost command')
+        //.action(callProfileHelp)
+
+    program
+        .command('cost <command>')
+        .description('Estimates AWS cost.')
+        .addCommand(cost_estimate_command)
+        .addCommand(cost_check_command)
+        .addCommand(cost_help_command)
+    */
 
     program.parse(process.argv)
 }
