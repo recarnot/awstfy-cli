@@ -53,7 +53,7 @@ _{{program}}_complete()
         return 0
     fi
     
-    basic="configure provider backend version help init plan apply destroy setup-completion module"
+    basic="configure provider backend version help init plan apply destroy setup-completion"
     complex="add env profile cloud var"
     opts=$basic" "$complex
 
@@ -79,7 +79,7 @@ _{{program}}_complete()
             return 0
             ;;
         add)
-            COMPREPLY=( $(compgen -W "vpc storage sns dns state provider" -- ${cur}) )
+            COMPREPLY=( $(compgen -W "module state provider" -- ${cur}) )
             return 0
             ;;
         *)

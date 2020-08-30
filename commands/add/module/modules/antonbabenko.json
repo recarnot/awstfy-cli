@@ -1,0 +1,56 @@
+{
+    "author": "Anton Babenko",
+    "homeurl": "https://github.com/terraform-aws-modules",
+    "modules": {
+        "iam-user": {
+            "descrption": "Creates IAM user, IAM login profile, IAM access key and uploads IAM SSH user public key. All of these are optional resources.",
+            "registry_url": "https://registry.terraform.io/modules/terraform-aws-modules/iam/aws/2.18.0/submodules/iam-user",
+            "source": "terraform-aws-modules/iam/aws//modules/iam-user",
+            "required_variables": {
+                "name": {
+                    "description": "Desired name for the IAM user",
+                    "type": "string"
+                }
+            }
+        },
+        "vpc": {
+            "descrption": "Terraform module which creates VPC resources on AWS.",
+            "registry_url": "https://registry.terraform.io/modules/terraform-aws-modules/vpc/aws/",
+            "source": "terraform-aws-modules/vpc/aws",
+            "required_variables": {
+                "name": {
+                    "description": "Desired name for the VPC",
+                    "type": "string"
+                },
+                "cidr" : {
+                    "description": "Cidr block",
+                    "type": "string"
+                },
+                "azs" : {
+                    "description": "A list of availability zones names or ids in the region",
+                    "type": "list(string)"
+                },
+                "public_subnets": {
+                    "description": "A list of public subnets cidr blocks inside the VPC",
+                    "type": "list(string)",
+                    "default": "[]"
+                },
+                "private_subnets": {
+                    "description": "A list of private subnets cidr blocks inside the VPC",
+                    "type": "list(string)",
+                    "default": "[]"
+                },
+                "enable_nat_gateway": {
+                    "description": "Provision NAT Gateways",
+                    "type": "bool",
+                    "default": "false"
+                },
+                "single_nat_gateway": {
+                    "description": "Provision a single shared NAT Gateway",
+                    "type": "bool",
+                    "default": "false"
+                }
+            }
+        }
+    }
+}

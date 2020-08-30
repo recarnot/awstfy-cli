@@ -146,28 +146,16 @@ function addAddCommands() {
         { name: ''},
         { name: 'add <resource>: Add Terraform resources'.blue, header:true},
         {
-            name: 'add vpc',
-            description: 'Manages VPC.',
-        },
-        {
-            name: 'add storage',
-            description: 'Manages Storage.',
-        },
-        {
-            name: 'add sns',
-            description: 'Manages SNS Topic.',
-        },
-        {
-            name: 'add dns',
-            description: 'Manages Hosted zone.',
+            name: 'add provider',
+            description: 'Adds Terraform Provider alias.',
         },
         {
             name: 'add state',
-            description: 'Manages Remote state connection.',
+            description: 'Adds Remote state connection.',
         },
         {
-            name: 'add provider',
-            description: 'Manages Provider alias.',
+            name: 'add module',
+            description: 'Adds Terraform module.',
         },
     ];
 

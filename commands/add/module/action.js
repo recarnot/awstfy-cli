@@ -1,13 +1,19 @@
 const fs = require('fs');
 const path = require('path');
-const { getLocalConfigPath } = require('../../tools/config');
+const { getLocalConfigPath } = require('../../../tools/config');
 const { prompt } = require('inquirer');
-const { logSuccess } = require('../../tools/helper');
+const { logSuccess } = require('../../../tools/helper');
+const shell = require('shelljs');
 
 exports.callModule = function (rawcommand) {
+   // if(!shell.test('-f', getLocalConfigPath() + '/registry.json')) {
+        var template_path = path.dirname(fs.realpathSync(__filename));
+        shell.cp("-f", template_path + '/registry.json',  getLocalConfigPath() + '/registry.json')
+        shell.cp("-rf", template_path + '/modules',  getLocalConfigPath() + '/modules')
+    //}
+
     var content = path.normalize(fs.readFileSync(getLocalConfigPath() + '/registry.json', { encoding: 'utf8' }));
     var parsed = JSON.parse(content);
-
     var registry_inputs = {
         type: 'list',
         name: 'registry',
@@ -56,7 +62,8 @@ exports.callModule = function (rawcommand) {
                         inputs.push({
                             type: 'input',
                             name: key,
-                            message: variables[key].description + " [" + variables[key].type + ']:'
+                            message: variables[key].description + " [" + variables[key].type + ']:',
+                            default: variables[key].default
                         })
                     }
 

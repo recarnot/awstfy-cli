@@ -5,11 +5,7 @@ const { callBackend } = require('./backend/action');
 const { callConfigure } = require('./configure/action');
 const { getInfo } = require('../tools/helper');
 const { callVersion } = require('./version/action');
-const { callVPC } = require('./add/vpc/action');
-const { callStorage } = require('./add/storage/action');
-const { callDNSZone } = require('./add/dnszone/action');
 const { callRState } = require('./add/remotestate/action');
-const { callSNS } = require('./add/sns/action');
 const { callProviderAlias } = require('./add/provider/action');
 const { callClone } = require('./clone/action');
 const { callConsole } = require('./console/action');
@@ -27,9 +23,7 @@ const { callListProfile } = require('./profile/list/action');
 const { callInit, callPlan, callApply, callDestroy } = require('./terraform/action');
 const { setupCompletion } = require('./completion/action');
 const { commandManager } = require('../managers/command_manager');
-const { callCostEstimate } = require('./cost/estimate/action');
-const { callCostCheck } = require('./cost/check/action');
-const { callModule } = require('./module/action');
+const { callModule } = require('./add/module/action');
 
 function initCommands() {
 
@@ -119,11 +113,6 @@ function initCommands() {
         .action(callDestroy)
 
     program
-        .command('module')
-        .description('Add Terraform module.')
-        .action(callModule)
-
-    program
         .command("setup-completion")
         .allowUnknownOption()
         .description('Setup auto completion.')
@@ -134,35 +123,11 @@ function initCommands() {
         .description('Displays help for add command')
         .action(callAddHelp)
 
-    const add_vpc_command = new Command()
-        .command('vpc')
-        .description('Adds or updates VPC resource.')
-        .option('-f, --force', 'Allows to auto overwrite configuration if exist.')
-        .action(callVPC)
-
-    const add_storage_command = new Command()
-        .command('storage')
-        .description('Adds or updates Storage resource.')
-        .option('-f, --force', 'Allows to auto overwrite configuration if exist.')
-        .action(callStorage)
-
-    const add_dnszone_command = new Command()
-        .command('dns')
-        .description('Adds or updates Hosted zone resource.')
-        .option('-f, --force', 'Allows to auto overwrite configuration if exist.')
-        .action(callDNSZone)
-
     const add_rstate_command = new Command()
         .command('state')
         .description('Adds or updates Remote state connection.')
         .option('-f, --force', 'Allows to auto overwrite configuration if exist.')
         .action(callRState)
-
-    const add_sns_command = new Command()
-        .command('sns')
-        .description('Adds or updates SNS Topic resource.')
-        .option('-f, --force', 'Allows to auto overwrite configuration if exist.')
-        .action(callSNS)
 
     const add_alias_command = new Command()
         .command('provider')
@@ -170,15 +135,17 @@ function initCommands() {
         .option('-f, --force', 'Allows to auto overwrite configuration if exist.')
         .action(callProviderAlias)
 
+    const add_module_command = new Command()
+        .command('module')
+        .description('Adds Terraform module.')
+        .action(callModule)
+
     program
         .command('add <resource>')
-        .description('add Terraform resource')
-        .addCommand(add_vpc_command)
-        .addCommand(add_storage_command)
-        .addCommand(add_dnszone_command)
+        .description('add Terraform resources')
         .addCommand(add_rstate_command)
-        .addCommand(add_sns_command)
         .addCommand(add_alias_command)
+        .addCommand(add_module_command)
         .addCommand(add_help_command)
 
     const env_list_command = new Command()
